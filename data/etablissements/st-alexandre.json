@@ -303,7 +303,7 @@
                          "allergenes":  [
                                             "gluten"
                                         ],
-                         "image":  "",
+                         "image":  "images/bieres/gose-fraise-basilic.jpg",
                          "imageEtiquette":  "",
                          "maj":  "2026-11-07"
                      },
@@ -664,7 +664,7 @@
                          "allergenes":  [
                                             "gluten"
                                         ],
-                         "image":  "",
+                         "image":  "images/bieres/griffon-rousse.jpg",
                          "imageEtiquette":  "",
                          "maj":  "2026-11-07"
                      },
@@ -715,7 +715,7 @@
                          "allergenes":  [
                                             "gluten"
                                         ],
-                         "image":  "",
+                         "image":  "images/bieres/amer-ipa.jpg",
                          "imageEtiquette":  "",
                          "maj":  "2026-11-07"
                      },
@@ -817,7 +817,7 @@
                          "allergenes":  [
                                             "gluten"
                                         ],
-                         "image":  "",
+                         "image":  "images/bieres/chipie.jpg",
                          "imageEtiquette":  "",
                          "maj":  "2026-11-07"
                      },
@@ -920,7 +920,7 @@
                          "allergenes":  [
                                             "gluten"
                                         ],
-                         "image":  "",
+                         "image":  "images/bieres/st-ambroise-stout.jpg",
                          "imageEtiquette":  "",
                          "maj":  "2026-11-07"
                      },
@@ -970,7 +970,7 @@
                          "allergenes":  [
 
                                         ],
-                         "image":  "",
+                         "image":  "images/bieres/cidre-mystique.jpg",
                          "imageEtiquette":  "",
                          "maj":  "2026-11-07"
                      },
@@ -1018,7 +1018,7 @@
                          "allergenes":  [
 
                                         ],
-                         "image":  "",
+                         "image":  "images/bieres/cidre-lacroix.jpg",
                          "imageEtiquette":  "",
                          "maj":  "2026-11-07"
                      },
@@ -1263,7 +1263,7 @@
                          "allergenes":  [
                                             "gluten"
                                         ],
-                         "image":  "",
+                         "image":  "images/bieres/lindemans.jpg",
                          "imageEtiquette":  "",
                          "maj":  "2026-11-07"
                      },
@@ -1904,7 +1904,7 @@
                          "allergenes":  [
 
                                         ],
-                         "image":  "",
+                         "image":  "images/bieres/kombucha-fraise-basilic.jpg",
                          "imageEtiquette":  "",
                          "maj":  "2026-11-07"
                      }
