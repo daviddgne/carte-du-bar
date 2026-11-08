@@ -1,0 +1,71 @@
+{
+  "produits": [
+    {
+      "id": "p-rouge-maison",
+      "nom": "Rouge de la maison (exemple)",
+      "categorie": "vin",
+      "style": "vin-rouge",
+      "producteur": "Domaine Exemple",
+      "origine": "Languedoc, France",
+      "cepages": "Syrah, grenache",
+      "millesime": "2023",
+      "alcool": 13.5,
+      "ibu": null,
+      "format": "Verre 6 oz / bouteille 750 ml",
+      "prixVerre": 11,
+      "prix": 48,
+      "aromes": ["fruits-noirs", "epice"],
+      "degustation": ["rond", "tannique"],
+      "accords": ["viande-rouge", "grillades", "fromage"],
+      "etiquettes": [],
+      "notes": { "fr": "Mûre, cassis et poivre noir. Tanins souples.", "en": "Blackberry, cassis and black pepper. Supple tannins." },
+      "accordsNotes": { "fr": "", "en": "" },
+      "coupDeCoeur": true,
+      "disponible": true,
+      "regimes": { "sansGluten": true, "vegetarien": true, "vegan": null },
+      "allergenes": ["sulfites"],
+      "image": "",
+      "imageEtiquette": ""
+    },
+    {
+      "id": "p-negroni",
+      "nom": "Negroni",
+      "categorie": "cocktail",
+      "style": "classique",
+      "producteur": "",
+      "origine": "Italie",
+      "alcool": null,
+      "ibu": null,
+      "format": "",
+      "prix": 14,
+      "aromes": ["herbace", "agrumes"],
+      "degustation": ["amer", "complexe"],
+      "accords": ["aperitif", "fromage"],
+      "etiquettes": [],
+      "notes": { "fr": "Amer, herbacé et légèrement sucré. L'apéritif par excellence.", "en": "Bitter, herbal and lightly sweet. The ultimate aperitif." },
+      "accordsNotes": { "fr": "", "en": "" },
+      "coupDeCoeur": false,
+      "disponible": true,
+      "regimes": { "sansGluten": null, "vegetarien": true, "vegan": null },
+      "allergenes": [],
+      "image": "",
+      "imageEtiquette": "",
+      "recette": {
+        "methode": "direct",
+        "verre": "old-fashioned",
+        "glace": "gros-glacon",
+        "ingredients": [
+          { "quantite": "30", "unite": "ml", "nom": { "fr": "Gin", "en": "Gin" }, "produitId": "" },
+          { "quantite": "30", "unite": "ml", "nom": { "fr": "Campari", "en": "Campari" }, "produitId": "" },
+          { "quantite": "30", "unite": "ml", "nom": { "fr": "Vermouth rouge", "en": "Sweet vermouth" }, "produitId": "" }
+        ],
+        "etapes": {
+          "fr": "Mettre un gros glaçon dans le verre.\nVerser le gin, le Campari et le vermouth.\nRemuer 15 à 20 secondes.",
+          "en": "Place a large ice cube in the glass.\nPour the gin, Campari and vermouth.\nStir for 15–20 seconds."
+        },
+        "garniture": { "fr": "Zeste d'orange exprimé au-dessus du verre.", "en": "Orange peel, expressed over the glass." },
+        "notesEquipe": { "fr": "", "en": "" }
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "site": {
+    "nom": { "fr": "Carte du bar", "en": "Bar menu" }
+  },
+  "etablissements": [
+    { "id": "pub-exemple", "nom": "Pub (exemple)", "type": "pub", "ville": "Québec" },
+    { "id": "restaurant-exemple", "nom": "Restaurant (exemple)", "type": "restaurant", "ville": "Québec" }
+  ]
+}
