@@ -1,9 +1,9 @@
 {
   "site": {
-    "nom": { "fr": "Carte du bar", "en": "Bar menu" }
+    "nom": { "fr": "Carte des bières", "en": "Beer menu" }
   },
   "etablissements": [
-    { "id": "pub-exemple", "nom": "Pub (exemple)", "type": "pub", "ville": "Québec" },
-    { "id": "restaurant-exemple", "nom": "Restaurant (exemple)", "type": "restaurant", "ville": "Québec" }
+    { "id": "st-alexandre", "nom": "Pub St-Alexandre", "type": "pub", "ville": "" },
+    { "id": "murphys", "nom": "Pub Murphy's", "type": "pub", "ville": "" }
   ]
 }

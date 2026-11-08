@@ -1,0 +1,1683 @@
+{
+    "produits":  [
+                     {
+                         "id":  "b-st-ambroise-stout",
+                         "nom":  "Irish Stout St-Ambroise",
+                         "categorie":  "biere",
+                         "style":  "stout",
+                         "producteur":  "Brasserie McAuslan (St-Ambroise)",
+                         "origine":  "Montréal, QC",
+                         "alcool":  4.2,
+                         "ibu":  23,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "cafe",
+                                        "chocolat",
+                                        "caramel",
+                                        "malte"
+                                    ],
+                         "degustation":  [
+                                             "sec",
+                                             "cremeux"
+                                         ],
+                         "accords":  [
+                                         "dessert-chocolat",
+                                         "fruits-de-mer",
+                                         "grillades"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut",
+                                            "local"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Stout sec à la texture veloutée grâce à l\u0027azote; finale légèrement amère et grillée.",
+                                       "en":  "Dry stout with a velvety nitro texture; lightly bitter, toasty finish."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-gose-fraise-basilic",
+                         "nom":  "Gose fraise basilic",
+                         "categorie":  "biere",
+                         "style":  "gose",
+                         "producteur":  "Microbrasserie de l\u0027Île d\u0027Orléans",
+                         "origine":  "Île d\u0027Orléans, QC",
+                         "alcool":  4.5,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "fruits-rouges",
+                                        "herbace",
+                                        "agrumes"
+                                    ],
+                         "degustation":  [
+                                             "acidule",
+                                             "desalterant"
+                                         ],
+                         "accords":  [
+                                         "aperitif",
+                                         "salade",
+                                         "fruits-de-mer"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut",
+                                            "local"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Acidulée, fruitée et herbacée, avec une finale fraîche et légèrement saline.",
+                                       "en":  "Tart, fruity and herbal, with a fresh, slightly salty finish."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-boreale-ipa",
+                         "nom":  "Boréale IPA",
+                         "categorie":  "biere",
+                         "style":  "ipa",
+                         "producteur":  "Boréale (Les Brasseurs du Nord)",
+                         "origine":  "Blainville, QC",
+                         "alcool":  6.2,
+                         "ibu":  50,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "agrumes",
+                                        "floral",
+                                        "resineux",
+                                        "houblon",
+                                        "malte"
+                                    ],
+                         "degustation":  [
+                                             "amer",
+                                             "sec"
+                                         ],
+                         "accords":  [
+                                         "burger",
+                                         "ailes",
+                                         "plats-epices"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut",
+                                            "local"
+                                        ],
+                         "notes":  {
+                                       "fr":  "IPA ambrée, non filtrée, généreusement houblonnée, avec une amertume marquée et une finale florale.",
+                                       "en":  "Amber, unfiltered and generously hopped IPA, with pronounced bitterness and a floral finish."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/boreale-ipa.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-flacatoune",
+                         "nom":  "Flacatoune",
+                         "categorie":  "biere",
+                         "style":  "ale-belge-forte",
+                         "producteur":  "Microbrasserie Charlevoix",
+                         "origine":  "Baie-Saint-Paul, QC",
+                         "alcool":  7,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "fruits-a-noyau",
+                                        "levure",
+                                        "epice",
+                                        "houblon"
+                                    ],
+                         "degustation":  [
+                                             "sec",
+                                             "chaleureux",
+                                             "complexe"
+                                         ],
+                         "accords":  [
+                                         "fromage",
+                                         "porc",
+                                         "grillades"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut",
+                                            "local"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Blonde généreuse aux notes fruitées et épicées; finale légèrement sèche et houblonnée.",
+                                       "en":  "Generous blonde with fruity, spicy notes; slightly dry, hoppy finish."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/flacatoune.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-solstice-dete",
+                         "nom":  "Solstice d\u0027été framboise",
+                         "categorie":  "biere",
+                         "style":  "sour",
+                         "producteur":  "Dieu du Ciel!",
+                         "origine":  "Montréal, QC",
+                         "alcool":  5.9,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "fruits-rouges",
+                                        "ble"
+                                    ],
+                         "degustation":  [
+                                             "acidule",
+                                             "desalterant"
+                                         ],
+                         "accords":  [
+                                         "aperitif",
+                                         "salade",
+                                         "dessert-fruits"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut",
+                                            "local"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Bière sure au goût franc de framboise, très acidulée et rafraîchissante.",
+                                       "en":  "Sour beer with a bold raspberry taste, very tart and refreshing."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/solstice-dete.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-rosee-hibiscus",
+                         "nom":  "Rosée d\u0027Hibiscus",
+                         "categorie":  "biere",
+                         "style":  "blanche",
+                         "producteur":  "Dieu du Ciel!",
+                         "origine":  "Montréal, QC",
+                         "alcool":  5.9,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "floral",
+                                        "agrumes",
+                                        "ble"
+                                    ],
+                         "degustation":  [
+                                             "acidule",
+                                             "doux"
+                                         ],
+                         "accords":  [
+                                         "fruits-de-mer",
+                                         "salade",
+                                         "poisson"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut",
+                                            "local"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Bière de blé florale et acidulée, à la texture douce, avec une note fraîche de pamplemousse.",
+                                       "en":  "Floral, tart wheat beer with a soft texture and a fresh grapefruit note."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/rosee-hibiscus.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-moralite",
+                         "nom":  "Moralité",
+                         "categorie":  "biere",
+                         "style":  "ipa",
+                         "producteur":  "Dieu du Ciel!",
+                         "origine":  "Montréal, QC",
+                         "alcool":  6.9,
+                         "ibu":  100,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "tropical",
+                                        "resineux",
+                                        "houblon"
+                                    ],
+                         "degustation":  [
+                                             "amer",
+                                             "sec"
+                                         ],
+                         "accords":  [
+                                         "burger",
+                                         "ailes",
+                                         "plats-epices"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut",
+                                            "local"
+                                        ],
+                         "notes":  {
+                                       "fr":  "IPA au houblon intense, finale sèche, résineuse et franchement amère.",
+                                       "en":  "Intensely hopped IPA with a dry, resinous and boldly bitter finish."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/moralite.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-castor-yakima",
+                         "nom":  "Castor Yakima IPA",
+                         "categorie":  "biere",
+                         "style":  "ipa",
+                         "producteur":  "Microbrasserie Le Castor",
+                         "origine":  "Rigaud, QC",
+                         "alcool":  6.5,
+                         "ibu":  75,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "agrumes",
+                                        "tropical",
+                                        "houblon"
+                                    ],
+                         "degustation":  [
+                                             "amer",
+                                             "sec"
+                                         ],
+                         "accords":  [
+                                         "burger",
+                                         "ailes",
+                                         "plats-epices"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut",
+                                            "local"
+                                        ],
+                         "notes":  {
+                                       "fr":  "IPA de la côte Ouest aux notes citronnées et houblonnées, soutenues par des malts ronds.",
+                                       "en":  "West Coast IPA with lemony, hoppy notes backed by rounded malts."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/castor-yakima.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-jackie-dunn",
+                         "nom":  "Jackie Dunn",
+                         "categorie":  "biere",
+                         "style":  "session-ipa",
+                         "producteur":  "La Souche",
+                         "origine":  "Québec, QC",
+                         "alcool":  4,
+                         "ibu":  40,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "agrumes",
+                                        "houblon",
+                                        "herbace"
+                                    ],
+                         "degustation":  [
+                                             "leger",
+                                             "desalterant"
+                                         ],
+                         "accords":  [
+                                         "burger",
+                                         "ailes",
+                                         "plats-epices"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut",
+                                            "local"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Session IPA légère et houblonnée, fraîche et facile à boire.",
+                                       "en":  "Light, hoppy session IPA, fresh and easy-drinking."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/jackie-dunn.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-griffon-rousse",
+                         "nom":  "Griffon Rousse",
+                         "categorie":  "biere",
+                         "style":  "rousse",
+                         "producteur":  "Brasserie McAuslan",
+                         "origine":  "Montréal, QC",
+                         "alcool":  4.5,
+                         "ibu":  27,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "caramel",
+                                        "noix",
+                                        "malte"
+                                    ],
+                         "degustation":  [
+                                             "doux"
+                                         ],
+                         "accords":  [
+                                         "burger",
+                                         "poutine",
+                                         "porc"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut",
+                                            "local"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Ale rousse douce, aux saveurs maltées et à l\u0027amertume légère.",
+                                       "en":  "Smooth red ale with malty flavours and light bitterness."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-mactavish",
+                         "nom":  "MacTavish",
+                         "categorie":  "biere",
+                         "style":  "pale-ale",
+                         "producteur":  "Le Trou du Diable",
+                         "origine":  "Shawinigan, QC",
+                         "alcool":  5,
+                         "ibu":  30,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "caramel",
+                                        "resineux",
+                                        "agrumes",
+                                        "tropical",
+                                        "malte"
+                                    ],
+                         "degustation":  [
+                                             "rond"
+                                         ],
+                         "accords":  [
+                                         "burger",
+                                         "pizza",
+                                         "grillades"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut",
+                                            "local"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Pale ale équilibrée : caramel, pamplemousse rose, pin et finale légèrement amère.",
+                                       "en":  "Balanced pale ale: caramel, pink grapefruit, pine and a lightly bitter finish."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/mactavish.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-perroquet",
+                         "nom":  "Perroquet",
+                         "categorie":  "biere",
+                         "style":  "session-ipa",
+                         "producteur":  "Le Trou du Diable",
+                         "origine":  "Shawinigan, QC",
+                         "alcool":  3.5,
+                         "ibu":  60,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "tropical",
+                                        "fruits-a-noyau",
+                                        "agrumes",
+                                        "resineux"
+                                    ],
+                         "degustation":  [
+                                             "leger"
+                                         ],
+                         "accords":  [
+                                         "burger",
+                                         "ailes",
+                                         "plats-epices"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut",
+                                            "local"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Session IPA trouble, fruitée et résineuse, avec une bouche légère et maltée.",
+                                       "en":  "Hazy, fruity and resinous session IPA with a light, malty body."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/perroquet.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-pitoune",
+                         "nom":  "La Pitoune",
+                         "categorie":  "biere",
+                         "style":  "pilsner",
+                         "producteur":  "Le Trou du Diable",
+                         "origine":  "Shawinigan, QC",
+                         "alcool":  5,
+                         "ibu":  35,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "malte",
+                                        "cereales",
+                                        "herbace"
+                                    ],
+                         "degustation":  [
+                                             "sec",
+                                             "amer",
+                                             "desalterant"
+                                         ],
+                         "accords":  [
+                                         "pizza",
+                                         "ailes",
+                                         "poutine"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut",
+                                            "local"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Pils vive et croustillante, aux saveurs céréalières; finale sèche et amertume durable.",
+                                       "en":  "Lively, crisp pils with grainy flavours; dry finish and lasting bitterness."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/pitoune.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-quatre-surfeurs",
+                         "nom":  "Les Quatre Surfeurs de l\u0027Apocalypso",
+                         "categorie":  "biere",
+                         "style":  "ipa-blanche",
+                         "producteur":  "Le Trou du Diable",
+                         "origine":  "Shawinigan, QC",
+                         "alcool":  6.5,
+                         "ibu":  60,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "tropical",
+                                        "pomme-poire",
+                                        "resineux"
+                                    ],
+                         "degustation":  [
+                                             "amer",
+                                             "finale-longue"
+                                         ],
+                         "accords":  [
+                                         "burger",
+                                         "ailes",
+                                         "plats-epices"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut",
+                                            "local"
+                                        ],
+                         "notes":  {
+                                       "fr":  "IPA blanche voilée, fruitée et houblonnée, à longue finale amère et sapinée.",
+                                       "en":  "Hazy white IPA, fruity and hoppy, with a long, bitter, piney finish."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/quatre-surfeurs.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-unibroue-neipa",
+                         "nom":  "Unibroue NEIPA",
+                         "categorie":  "biere",
+                         "style":  "neipa",
+                         "producteur":  "Unibroue",
+                         "origine":  "Chambly, QC",
+                         "alcool":  6,
+                         "ibu":  55,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "agrumes",
+                                        "tropical",
+                                        "fruits-a-noyau",
+                                        "houblon"
+                                    ],
+                         "degustation":  [
+                                             "juteux",
+                                             "sec"
+                                         ],
+                         "accords":  [
+                                         "burger",
+                                         "ailes",
+                                         "plats-epices"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut",
+                                            "local"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Trouble et juteuse, avec une amertume courte, une pointe résineuse et une finale sèche.",
+                                       "en":  "Hazy and juicy, with short bitterness, a resinous hint and a dry finish."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/unibroue-neipa.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-blanche-de-chambly",
+                         "nom":  "Blanche de Chambly",
+                         "categorie":  "biere",
+                         "style":  "blanche",
+                         "producteur":  "Unibroue",
+                         "origine":  "Chambly, QC",
+                         "alcool":  5,
+                         "ibu":  10,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "agrumes",
+                                        "epice",
+                                        "ble",
+                                        "malte"
+                                    ],
+                         "degustation":  [
+                                             "leger",
+                                             "desalterant",
+                                             "cremeux"
+                                         ],
+                         "accords":  [
+                                         "fruits-de-mer",
+                                         "salade",
+                                         "poisson"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut",
+                                            "local"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Blanche rafraîchissante et veloutée, aux notes d\u0027orange, d\u0027épices et de blé.",
+                                       "en":  "Refreshing, velvety white beer with notes of orange, spice and wheat."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/blanche-de-chambly.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-fin-du-monde",
+                         "nom":  "La Fin du Monde",
+                         "categorie":  "biere",
+                         "style":  "tripel",
+                         "producteur":  "Unibroue",
+                         "origine":  "Chambly, QC",
+                         "alcool":  9,
+                         "ibu":  19,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "miel",
+                                        "cereales",
+                                        "epice",
+                                        "fruits-a-noyau",
+                                        "malte"
+                                    ],
+                         "degustation":  [
+                                             "complexe",
+                                             "chaleureux",
+                                             "corse",
+                                             "sec"
+                                         ],
+                         "accords":  [
+                                         "fromage",
+                                         "volaille",
+                                         "porc"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut",
+                                            "local"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Triple complexe et fruitée, avec une douceur équilibrée par une finale sèche.",
+                                       "en":  "Complex, fruity tripel whose sweetness is balanced by a dry finish."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/fin-du-monde.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-michelob-ultra",
+                         "nom":  "Michelob Ultra",
+                         "categorie":  "biere",
+                         "style":  "lager-legere",
+                         "producteur":  "Anheuser-Busch (Labatt au Canada)",
+                         "origine":  "États-Unis",
+                         "alcool":  4,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "cereales",
+                                        "malte"
+                                    ],
+                         "degustation":  [
+                                             "leger",
+                                             "desalterant"
+                                         ],
+                         "accords":  [
+                                         "pizza",
+                                         "ailes",
+                                         "poutine"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Très légère, peu amère et désaltérante.",
+                                       "en":  "Very light, low bitterness and thirst-quenching."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/michelob-ultra.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-budweiser",
+                         "nom":  "Budweiser",
+                         "categorie":  "biere",
+                         "style":  "lager",
+                         "producteur":  "Anheuser-Busch (Labatt au Canada)",
+                         "origine":  "États-Unis",
+                         "alcool":  5,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "malte",
+                                        "cereales"
+                                    ],
+                         "degustation":  [
+                                             "leger",
+                                             "desalterant"
+                                         ],
+                         "accords":  [
+                                         "pizza",
+                                         "ailes",
+                                         "poutine"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Légère, nette et peu amère.",
+                                       "en":  "Light, clean and low in bitterness."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/budweiser.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-molson-canadian",
+                         "nom":  "Molson Canadian",
+                         "categorie":  "biere",
+                         "style":  "lager",
+                         "producteur":  "Molson Coors",
+                         "origine":  "Canada",
+                         "alcool":  5,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "malte",
+                                        "cereales",
+                                        "houblon"
+                                    ],
+                         "degustation":  [
+                                             "desalterant"
+                                         ],
+                         "accords":  [
+                                         "pizza",
+                                         "ailes",
+                                         "poutine"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Blonde fraîche et facile à boire, amertume modérée.",
+                                       "en":  "Fresh, easy-drinking lager with moderate bitterness."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/molson-canadian.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-chimay-bleue",
+                         "nom":  "Chimay Grande Réserve (Bleue)",
+                         "categorie":  "biere",
+                         "style":  "ale-belge-forte",
+                         "producteur":  "Bières de Chimay",
+                         "origine":  "Belgique",
+                         "alcool":  9,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "epice",
+                                        "caramel",
+                                        "fruits-noirs"
+                                    ],
+                         "degustation":  [
+                                             "corse",
+                                             "complexe",
+                                             "sec"
+                                         ],
+                         "accords":  [
+                                         "fromage",
+                                         "porc",
+                                         "grillades"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Brune puissante et complexe, relativement sèche, avec une touche de caramel.",
+                                       "en":  "Powerful, complex dark ale, fairly dry, with a touch of caramel."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/chimay-bleue.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-delirium-tremens",
+                         "nom":  "Delirium Tremens",
+                         "categorie":  "biere",
+                         "style":  "ale-belge-forte",
+                         "producteur":  "Brouwerij Huyghe",
+                         "origine":  "Belgique",
+                         "alcool":  8.5,
+                         "ibu":  24,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "malte",
+                                        "epice"
+                                    ],
+                         "degustation":  [
+                                             "rond",
+                                             "chaleureux",
+                                             "finale-longue",
+                                             "amer"
+                                         ],
+                         "accords":  [
+                                         "fromage",
+                                         "porc",
+                                         "grillades"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Blonde forte, ronde, chaleureuse, à la finale longue, sèche et amère.",
+                                       "en":  "Strong blonde, round and warming, with a long, dry, bitter finish."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/delirium-tremens.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-stella-artois",
+                         "nom":  "Stella Artois",
+                         "categorie":  "biere",
+                         "style":  "pilsner",
+                         "producteur":  "Stella Artois (AB InBev)",
+                         "origine":  "Belgique",
+                         "alcool":  5,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "malte",
+                                        "cereales",
+                                        "houblon"
+                                    ],
+                         "degustation":  [
+                                             "leger",
+                                             "sec",
+                                             "desalterant"
+                                         ],
+                         "accords":  [
+                                         "pizza",
+                                         "ailes",
+                                         "poutine"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Légère et sèche, avec une amertume modérée.",
+                                       "en":  "Light and dry, with moderate bitterness."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/stella-artois.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-hoegaarden",
+                         "nom":  "Hoegaarden",
+                         "categorie":  "biere",
+                         "style":  "blanche",
+                         "producteur":  "Brasserie de Hoegaarden (AB InBev)",
+                         "origine":  "Belgique",
+                         "alcool":  4.9,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "agrumes",
+                                        "epice",
+                                        "ble"
+                                    ],
+                         "degustation":  [
+                                             "doux",
+                                             "acidule",
+                                             "desalterant"
+                                         ],
+                         "accords":  [
+                                         "fruits-de-mer",
+                                         "salade",
+                                         "poisson"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Douce, légèrement acidulée et très rafraîchissante.",
+                                       "en":  "Smooth, slightly tart and very refreshing."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/hoegaarden.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-lindemans-kriek",
+                         "nom":  "Lindemans Kriek",
+                         "categorie":  "biere",
+                         "style":  "lambic",
+                         "producteur":  "Brouwerij Lindemans",
+                         "origine":  "Belgique",
+                         "alcool":  3.5,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "fruits-rouges",
+                                        "noix"
+                                    ],
+                         "degustation":  [
+                                             "sucre",
+                                             "acidule",
+                                             "petillant"
+                                         ],
+                         "accords":  [
+                                         "aperitif",
+                                         "dessert-fruits",
+                                         "fromage"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Lambic rouge pétillant, à la cerise, équilibrant douceur et acidité.",
+                                       "en":  "Sparkling red cherry lambic balancing sweetness and acidity."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/lindemans-kriek.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-carlsberg",
+                         "nom":  "Carlsberg",
+                         "categorie":  "biere",
+                         "style":  "pilsner",
+                         "producteur":  "Carlsberg",
+                         "origine":  "Danemark",
+                         "alcool":  5,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "malte",
+                                        "cereales",
+                                        "herbace"
+                                    ],
+                         "degustation":  [
+                                             "leger",
+                                             "desalterant"
+                                         ],
+                         "accords":  [
+                                         "pizza",
+                                         "ailes",
+                                         "poutine"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Blonde légère, vive et rafraîchissante.",
+                                       "en":  "Light, lively and refreshing lager."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/carlsberg.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-guinness",
+                         "nom":  "Guinness Draught",
+                         "categorie":  "biere",
+                         "style":  "stout",
+                         "producteur":  "Guinness (Diageo)",
+                         "origine":  "Dublin, Irlande",
+                         "alcool":  4.2,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "cafe",
+                                        "chocolat"
+                                    ],
+                         "degustation":  [
+                                             "cremeux",
+                                             "sec"
+                                         ],
+                         "accords":  [
+                                         "dessert-chocolat",
+                                         "fruits-de-mer",
+                                         "grillades"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Stout crémeux et équilibré, mêlant notes douces, amères et grillées.",
+                                       "en":  "Creamy, balanced stout blending sweet, bitter and roasted notes."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  true
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/guinness.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-kilkenny",
+                         "nom":  "Kilkenny",
+                         "categorie":  "biere",
+                         "style":  "irish-red",
+                         "producteur":  "Guinness (Diageo)",
+                         "origine":  "Irlande",
+                         "alcool":  4.3,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "caramel",
+                                        "malte"
+                                    ],
+                         "degustation":  [
+                                             "cremeux",
+                                             "doux"
+                                         ],
+                         "accords":  [
+                                         "burger",
+                                         "poutine",
+                                         "porc"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Rousse à mousse crémeuse, au caractère doux et malté.",
+                                       "en":  "Red ale with a creamy head and a smooth, malty character."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/kilkenny.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-murphys",
+                         "nom":  "Murphy\u0027s Irish Stout",
+                         "categorie":  "biere",
+                         "style":  "stout",
+                         "producteur":  "Murphy\u0027s (Heineken)",
+                         "origine":  "Cork, Irlande",
+                         "alcool":  4,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "cafe",
+                                        "chocolat",
+                                        "caramel"
+                                    ],
+                         "degustation":  [
+                                             "cremeux",
+                                             "doux"
+                                         ],
+                         "accords":  [
+                                         "dessert-chocolat",
+                                         "fruits-de-mer",
+                                         "grillades"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Stout douce et onctueuse, moins sèche qu\u0027une Guinness.",
+                                       "en":  "Smooth, silky stout, less dry than a Guinness."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/murphys.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-ohara-stout",
+                         "nom":  "O\u0027Hara\u0027s Irish Stout",
+                         "categorie":  "biere",
+                         "style":  "stout",
+                         "producteur":  "Carlow Brewing Company",
+                         "origine":  "Carlow, Irlande",
+                         "alcool":  4.3,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "cafe",
+                                        "malte",
+                                        "chocolat"
+                                    ],
+                         "degustation":  [
+                                             "amer",
+                                             "sec"
+                                         ],
+                         "accords":  [
+                                         "dessert-chocolat",
+                                         "fruits-de-mer",
+                                         "grillades"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Stout au caractère grillé, avec une finale légèrement amère.",
+                                       "en":  "Stout with a roasted character and a slightly bitter finish."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-kronenbourg-1664-blanc",
+                         "nom":  "Kronenbourg 1664 Blanc",
+                         "categorie":  "biere",
+                         "style":  "blanche",
+                         "producteur":  "Kronenbourg",
+                         "origine":  "Alsace, France",
+                         "alcool":  5,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "agrumes",
+                                        "floral",
+                                        "miel",
+                                        "ble"
+                                    ],
+                         "degustation":  [
+                                             "doux",
+                                             "desalterant"
+                                         ],
+                         "accords":  [
+                                         "fruits-de-mer",
+                                         "salade",
+                                         "poisson"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Blanche fraîche, légère et citronnée.",
+                                       "en":  "Fresh, light and lemony white beer."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/kronenbourg-1664-blanc.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-erdinger-dunkel",
+                         "nom":  "Erdinger Weissbier Dunkel",
+                         "categorie":  "biere",
+                         "style":  "dunkelweizen",
+                         "producteur":  "Erdinger Weißbräu",
+                         "origine":  "Erding, Allemagne",
+                         "alcool":  5.3,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "malte",
+                                        "chocolat",
+                                        "fruits-noirs"
+                                    ],
+                         "degustation":  [
+                                             "rond",
+                                             "desalterant"
+                                         ],
+                         "accords":  [
+                                         "porc",
+                                         "grillades",
+                                         "fromage"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Bière de blé brune ronde et maltée, à la légère touche de noix et finale fraîche.",
+                                       "en":  "Round, malty dark wheat beer with a light nutty touch and a fresh finish."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/erdinger-dunkel.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     },
+                     {
+                         "id":  "b-erdinger-weissbier",
+                         "nom":  "Erdinger Weissbier",
+                         "categorie":  "biere",
+                         "style":  "weizen",
+                         "producteur":  "Erdinger Weißbräu",
+                         "origine":  "Erding, Allemagne",
+                         "alcool":  5.3,
+                         "ibu":  null,
+                         "format":  "Pression",
+                         "prix":  null,
+                         "aromes":  [
+                                        "malte",
+                                        "levure",
+                                        "floral"
+                                    ],
+                         "degustation":  [
+                                             "doux",
+                                             "desalterant"
+                                         ],
+                         "accords":  [
+                                         "fruits-de-mer",
+                                         "salade",
+                                         "volaille"
+                                     ],
+                         "etiquettes":  [
+                                            "en-fut"
+                                        ],
+                         "notes":  {
+                                       "fr":  "Bière de blé douce, fruitée, légèrement épicée, vive et rafraîchissante.",
+                                       "en":  "Smooth, fruity wheat beer, lightly spicy, lively and refreshing."
+                                   },
+                         "accordsNotes":  {
+                                              "fr":  "",
+                                              "en":  ""
+                                          },
+                         "coupDeCoeur":  false,
+                         "disponible":  true,
+                         "regimes":  {
+                                         "sansGluten":  false,
+                                         "vegetarien":  null,
+                                         "vegan":  null
+                                     },
+                         "allergenes":  [
+                                            "gluten"
+                                        ],
+                         "image":  "images/bieres/erdinger-weissbier.jpg",
+                         "imageEtiquette":  "",
+                         "maj":  "2026-11-07"
+                     }
+                 ]
+}
