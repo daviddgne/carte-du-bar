@@ -1,7 +1,7 @@
 # Carte du bar
 
-Catalogue de boissons pour l'équipe : bières, cidres, vins, spiritueux, cocktails.
-On le consulte sur téléphone, en touchant des pastilles (type, arômes, alcool, IBU, notes en bouche, régimes, etc.).
+Carte des bières pour l'équipe, à consulter d'un coup d'œil sur téléphone.
+On touche des boutons dans les mots du client (goût, type, force, ce qu'il boit d'habitude) ou on choisit un plat du menu.
 
 - **`index.html`** : la vue équipe (lien public, en français et en anglais).
 - **`admin.html`** : l'administration (établissements, fiches produits, recettes, listes, publication).
@@ -38,9 +38,9 @@ Les données sont des fichiers JSON dans `data/` et les photos sont dans `images
 
 Quelques fonctions utiles :
 
-- **Pastilles « Autre… »** : ajoute un nouvel arôme, style ou accord directement depuis une fiche.
-- **Onglet Listes** : renomme, traduit, réordonne ou supprime les pastilles.
-  Supprimer une pastille la retire aussi des fiches qui l'utilisent.
+- **Boutons de recherche** : chaque fiche indique son type, son amertume, ses goûts et « Il boit d'habitude ». La force se calcule toute seule à partir du % d'alcool.
+- **Onglet Menu & accords** : liste les plats de chaque pub, avec les bières qui vont avec et la raison.
+- **Onglet Listes** : renomme, traduit et réordonne les arômes, styles, provenances et boutons.
 - **Photos** : sur téléphone, « Choisir / photographier » ouvre l'appareil photo.
   Les images sont réduites automatiquement (environ 1400 px) avant l'envoi.
 - **Cocktails** : méthode, verre, glace, ingrédients avec dosages, étapes, décoration et notes pour l'équipe.
@@ -59,8 +59,6 @@ La carte reste consultable hors connexion, dans sa dernière version vue en lign
 - La page `admin.html` est visible par tous, mais elle ne peut rien modifier sans le jeton.
 - Le jeton n'est enregistré que dans le navigateur où vous l'avez saisi, jamais dans le dépôt.
   En cas de perte d'un appareil, révoquez le jeton sur GitHub et créez-en un nouveau.
-- Le filtre « Sans allergène déclaré » se fie uniquement à ce qui est saisi dans les fiches.
-  Pour une allergie, vérifiez toujours la fiche complète et le produit.
 
 ## 5. Prochaine étape : l'assistant IA (pas encore activé)
 
@@ -75,7 +73,7 @@ index.html            vue équipe
 admin.html            administration
 css/                  styles (app.css partagé, admin.css)
 js/core.js            outils communs
-js/i18n.js            textes FR/EN, tranches d'alcool et d'IBU, unités
+js/i18n.js            textes FR/EN, seuils de force, unités
 js/public.js          vue équipe
 js/admin.js           administration
 js/github.js          lecture/écriture dans le dépôt (API GitHub)

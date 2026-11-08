@@ -6,16 +6,21 @@ import { UNITES } from './i18n.js';
 const { h } = C;
 const P = C.PATHS;
 const GH_KEY = 'carte-admin-github-v1';
-const EDIT_KEY = 'carte-admin-edition-v1';
+const EDIT_KEY = 'carte-admin-edition-v2';
 const root = document.getElementById('admin');
 
 const ETAB_TYPES = [['pub', 'Pub'], ['restaurant', 'Restaurant'], ['bar', 'Bar'], ['microbrasserie', 'Microbrasserie'], ['autre', 'Autre']];
 const LISTS = [
-  ['styles', 'Types / styles'], ['aromes', 'Arômes dominants'], ['degustation', 'En bouche'],
-  ['accords', 'Accords mets'], ['etiquettes', 'Étiquettes'], ['allergenes', 'Allergènes'],
+  ['aromes', 'Arômes'], ['styles', 'Types détaillés (styles)'], ['provenances', 'Provenances'],
+  ['gouts', 'Boutons « Goût »'], ['familles', 'Boutons « Type »'], ['habitudes', 'Boutons « Il boit d’habitude »'],
   ['methodes', 'Méthodes (cocktails)'], ['verres', 'Verres'], ['glaces', 'Glace'], ['categories', 'Catégories']
 ];
-const PRODUCT_LIST_FIELDS = { aromes: 'aromes', degustation: 'degustation', accords: 'accords', etiquettes: 'etiquettes', allergenes: 'allergenes' };
+// Ces listes structurent l'application : on peut les renommer, pas les supprimer.
+const LISTES_FIXES = new Set(['categories', 'gouts', 'familles', 'habitudes']);
+const PRODUCT_LIST_FIELDS = { aromes: 'aromes', gouts: 'gouts', habitudes: 'habitudes' };
+// « Pas amère » et « Amère » se déduisent du champ Amertume de la fiche.
+const GOUTS_AUTO = ['pas-amere', 'amere'];
+const AMERTUMES = [['peu', 'Peu amère'], ['moyenne', 'Moyenne'], ['tres', 'Très amère'], ['', 'Inconnue']];
 const PRODUCER_LABEL = {
   biere: 'Microbrasserie / brasserie', cidre: 'Cidrerie', vin: 'Domaine / producteur',
   spiritueux: 'Distillerie / marque', cocktail: 'Création de (optionnel)', 'sans-alcool': 'Producteur / marque'
@@ -53,13 +58,11 @@ function defaultConfig() { return { site: { nom: { fr: 'Carte du bar', en: 'Bar 
 
 function blankProduct(cat = 'biere') {
   return {
-    id: C.uid('p'), nom: '', categorie: cat, style: '', producteur: '', origine: '',
-    alcool: null, ibu: null, format: '', prix: null,
-    aromes: [], degustation: [], accords: [], etiquettes: [],
-    notes: { fr: '', en: '' }, accordsNotes: { fr: '', en: '' },
-    coupDeCoeur: false, disponible: true,
-    regimes: { sansGluten: null, vegetarien: null, vegan: null },
-    allergenes: [], image: '', imageEtiquette: ''
+    id: C.uid('p'), nom: '', categorie: cat, style: '', famille: '', producteur: '', provenance: '',
+    alcool: null, ibu: null, amertume: '',
+    aromes: [], gouts: [], habitudes: [],
+    notes: { fr: '', en: '' },
+    disponible: true, image: '', imageEtiquette: ''
   };
 }
 function blankRecipe() {
@@ -71,9 +74,8 @@ function blankRecipe() {
 }
 function normalizeProduct(src) {
   const p = { ...blankProduct(src.categorie), ...structuredClone(src) };
-  for (const k of ['aromes', 'degustation', 'accords', 'etiquettes', 'allergenes']) if (!Array.isArray(p[k])) p[k] = [];
-  p.notes = bi(p.notes); p.accordsNotes = bi(p.accordsNotes);
-  p.regimes = { sansGluten: null, vegetarien: null, vegan: null, ...(p.regimes || {}) };
+  for (const k of ['aromes', 'gouts', 'habitudes']) if (!Array.isArray(p[k])) p[k] = [];
+  p.notes = bi(p.notes);
   if (p.categorie === 'cocktail') ensureRecipe(p);
   return p;
 }
@@ -198,7 +200,7 @@ function render() {
 
   if (!A.editing) {
     root.append(h('nav', { class: 'tabs', 'aria-label': 'Sections' },
-      [['catalogue', 'Catalogue'], ['etablissements', 'Établissements'], ['listes', 'Listes'], ['parametres', 'Paramètres']]
+      [['catalogue', 'Catalogue'], ['plats', 'Menu & accords'], ['etablissements', 'Établissements'], ['listes', 'Listes'], ['parametres', 'Paramètres']]
         .map(([id, l]) => h('button', { type: 'button', class: 'tab', 'aria-current': A.tab === id ? 'page' : null, onclick: () => setTab(id) }, l))));
   }
 
@@ -212,6 +214,7 @@ function render() {
   root.append(view);
   if (A.editing) view.append(viewEditor());
   else if (A.tab === 'catalogue') view.append(viewCatalogue());
+  else if (A.tab === 'plats') view.append(viewPlats());
   else if (A.tab === 'etablissements') view.append(viewEtabs());
   else if (A.tab === 'listes') view.append(viewLists());
   else view.append(viewSettings());
@@ -360,7 +363,7 @@ function viewCatalogue() {
       listEl.append(h('button', { class: 'row', type: 'button', onclick: () => openEditor(p.id) },
         h('div', { class: 'row-thumb' }, thumb(p)),
         h('div', { class: 'row-main' },
-          h('div', { class: 'row-title' }, p.nom || '(sans nom)', p.coupDeCoeur ? h('span', { class: 'row-heart', html: C.UI_ICONS.heart, title: 'Coup de cœur' }) : null),
+          h('div', { class: 'row-title' }, p.nom || '(sans nom)'),
           h('div', { class: 'row-sub' }, [lbl('categories', p.categorie), p.style && lbl('styles', p.style), p.producteur].filter(Boolean).join(' · '))),
         h('div', { class: 'row-tags' },
           p.alcool != null ? h('span', { class: 'stat' }, C.fmtAbv(p.alcool)) : null,
@@ -405,7 +408,7 @@ function saveEditor() {
   if (!p.nom) { toast('Le nom est obligatoire.', 'error'); R.nameInput && R.nameInput.focus(); return; }
   if (p.categorie !== 'cocktail') delete p.recette;
   else if (p.recette) p.recette.ingredients = p.recette.ingredients.filter((i) => i.nom.fr.trim() || i.nom.en.trim() || i.quantite);
-  if (p.categorie !== 'vin') { delete p.prixVerre; delete p.cepages; delete p.millesime; }
+  if (p.categorie !== 'vin') { delete p.cepages; delete p.millesime; }
   p.maj = today();
 
   const prods = A.etabs[A.etabId].produits;
@@ -477,60 +480,42 @@ function viewEditor() {
         if (v === 'cocktail') ensureRecipe(p);
         markEdit(); rerender();
       })),
-      fieldDiv('Type / style',
+      fieldDiv('Type détaillé (style)',
         selectEl([['', '— Aucun —'], ...styles.map((s) => [s.id, s.fr])], p.style, (v) => { p.style = v; markEdit(); }),
         addInline('styles', 'Nouveau style…', (id) => { p.style = id; markEdit(); rerender(); }, { categorie: p.categorie }))),
     h('div', { class: 'grid2' },
       field(PRODUCER_LABEL[p.categorie] || 'Producteur', txt(p, 'producteur')),
-      field('Origine', txt(p, 'origine', { placeholder: 'Ex. : Québec, QC' }))),
+      fieldDiv('Provenance (titre dans la liste)',
+        selectEl([['', '— Aucune —'], ...(A.vocab.provenances || []).map((x) => [x.id, x.fr])], p.provenance, (v) => { p.provenance = v; markEdit(); }),
+        addInline('provenances', 'Nouvelle provenance…', (id) => { p.provenance = id; markEdit(); rerender(); }))),
     p.categorie === 'vin' ? h('div', { class: 'grid2' },
       field('Cépages', txt(p, 'cepages', { placeholder: 'Ex. : Syrah, grenache' })),
-      field('Millésime', txt(p, 'millesime', { placeholder: 'Ex. : 2023', inputmode: 'numeric' }))) : null,
-    h('div', { class: p.categorie === 'vin' ? 'grid3' : 'grid2' },
-      field('Format', txt(p, 'format', { placeholder: p.categorie === 'vin' ? 'Verre 6 oz / bouteille 750 ml' : 'Ex. : Pinte 20 oz' })),
-      p.categorie === 'vin' ? field('Prix au verre ($)', num(p, 'prixVerre', { placeholder: '0,00' })) : null,
-      field(p.categorie === 'vin' ? 'Prix bouteille ($)' : 'Prix ($)', num(p, 'prix', { placeholder: '0,00' })))
+      field('Millésime', txt(p, 'millesime', { placeholder: 'Ex. : 2023', inputmode: 'numeric' }))) : null
   ));
 
-  // 2. Caractéristiques
-  wrap.append(card('Caractéristiques',
+  // 2. Ce que le client demande
+  wrap.append(card('Boutons de recherche',
+    fieldDiv('Type', selectEl([['', '— Aucun —'], ...(A.vocab.familles || []).map((x) => [x.id, x.fr])], p.famille, (v) => { p.famille = v; markEdit(); })),
     h('div', { class: 'grid2' },
-      field('Alcool (%)', num(p, 'alcool', { placeholder: 'Ex. : 6,5' })),
-      field('IBU (amertume)', num(p, 'ibu', { placeholder: p.categorie === 'biere' ? 'Ex. : 45' : 'Surtout pour la bière' }))),
+      field('Alcool (%)', num(p, 'alcool', { placeholder: 'Ex. : 6,5' }), 'Légère : moins de 4,6 %. Forte : 6,5 % et plus.'),
+      field('IBU (facultatif)', num(p, 'ibu', { placeholder: 'Ex. : 45' }))),
+    fieldDiv('Amertume', segField(p, 'amertume', AMERTUMES)),
+    fieldDiv('Goût', picker('gouts', p, 'gouts', { fixe: true, exclure: GOUTS_AUTO })),
+    fieldDiv('Il boit d’habitude', picker('habitudes', p, 'habitudes', { fixe: true })),
     h('div', { class: 'toggles' },
-      toggle('Coup de cœur', p.coupDeCoeur, (v) => { p.coupDeCoeur = v; markEdit(); }),
       toggle('Visible sur le site', p.disponible !== false, (v) => { p.disponible = v; markEdit(); }))
   ));
 
-  // 3. Profil organoleptique
-  wrap.append(card('Profil de dégustation',
+  // 3. Dégustation
+  wrap.append(card('Dégustation',
     fieldDiv('Arômes dominants', picker('aromes', p, 'aromes')),
-    fieldDiv('En bouche', picker('degustation', p, 'degustation')),
-    biField('Notes de dégustation', p, 'notes', { multiline: true, rows: 4 })
+    biField('Notes de dégustation', p, 'notes', { multiline: true, rows: 3 })
   ));
 
   // 4. Recette (cocktails)
   if (p.categorie === 'cocktail') wrap.append(recipeCard(p, rerender));
 
-  // 5. Accords
-  wrap.append(card('Accords mets',
-    fieldDiv('Plats', picker('accords', p, 'accords')),
-    biField('Commentaire sur les accords', p, 'accordsNotes', { multiline: true, rows: 2 })
-  ));
-
-  // 6. Régimes & allergènes
-  wrap.append(card('Régimes & allergènes',
-    h('div', { class: 'tri-grid' },
-      triField('Sans gluten', p.regimes, 'sansGluten'),
-      triField('Végétarien', p.regimes, 'vegetarien'),
-      triField('Vegan', p.regimes, 'vegan', (v) => { if (v === true) p.regimes.vegetarien = true; rerender(); })),
-    fieldDiv('Allergènes présents', picker('allergenes', p, 'allergenes'))
-  ));
-
-  // 7. Étiquettes
-  wrap.append(card('Étiquettes', picker('etiquettes', p, 'etiquettes')));
-
-  // 8. Images
+  // 5. Images
   wrap.append(card('Images',
     h('div', { class: 'grid2' }, imageSlot(p, 'image', 'Photo du produit', rerender), imageSlot(p, 'imageEtiquette', 'Étiquette', rerender))));
 
@@ -645,22 +630,19 @@ function toggle(label, value, onChange) {
   const input = h('input', { type: 'checkbox', checked: !!value, onchange: (e) => onChange(e.target.checked) });
   return h('label', { class: 'switch' }, input, h('span', { class: 'track' }), h('span', null, label));
 }
-function triField(label, obj, key, after) {
-  const wrap = h('div', { class: 'tri' }, h('span', { class: 'label' }, label));
-  const seg = h('div', { class: 'seg', role: 'group', 'aria-label': label });
-  const opts = [[true, 'Oui'], [false, 'Non'], [null, '?']];
+function segField(obj, key, opts) {
+  const seg = h('div', { class: 'seg', role: 'group' });
   const draw = () => {
     C.clear(seg);
     for (const [v, l] of opts) {
       seg.append(h('button', {
-        type: 'button', 'aria-pressed': String(obj[key] === v), title: v === null ? 'Non précisé' : null,
-        onclick: () => { obj[key] = v; markEdit(); draw(); if (after) after(v); }
+        type: 'button', 'aria-pressed': String((obj[key] || '') === v),
+        onclick: () => { obj[key] = v; markEdit(); draw(); }
       }, l));
     }
   };
   draw();
-  wrap.append(seg);
-  return wrap;
+  return seg;
 }
 
 function uniqueVocabId(list, base) {
@@ -691,11 +673,11 @@ function addInline(list, placeholder, onAdded, extra = {}) {
   input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); add(); } });
   return h('div', { class: 'add-inline' }, input, h('button', { type: 'button', class: 'btn-ghost sm', onclick: add }, 'Ajouter'));
 }
-function picker(list, obj, key) {
+function picker(list, obj, key, { fixe = false, exclure = [] } = {}) {
   const wrap = h('div', { class: 'picker' });
   const draw = () => {
     C.clear(wrap);
-    const items = A.vocab[list] || [];
+    const items = (A.vocab[list] || []).filter((it) => !exclure.includes(it.id));
     const sel = obj[key];
     const extra = sel.filter((id) => !items.some((it) => it.id === id));
     wrap.append(h('div', { class: 'chips' },
@@ -708,7 +690,7 @@ function picker(list, obj, key) {
             markEdit(); draw();
           }
         }, l))));
-    wrap.append(addInline(list, 'Autre… (ajouter à la liste)', (id) => { if (!sel.includes(id)) sel.push(id); markEdit(); draw(); }));
+    if (!fixe) wrap.append(addInline(list, 'Autre… (ajouter à la liste)', (id) => { if (!sel.includes(id)) sel.push(id); markEdit(); draw(); }));
   };
   draw();
   return wrap;
@@ -761,6 +743,63 @@ function removeImage(p, key) {
   if (!old) return;
   if (ed.newImages[old]) delete ed.newImages[old];
   else ed.removed.push(old);
+}
+
+/* ================= Menu & accords ================= */
+function viewPlats() {
+  if (!A.etabId) return h('div', { class: 'empty' }, h('strong', null, 'Aucun établissement.'));
+  const d = A.etabs[A.etabId];
+  if (!Array.isArray(d.plats)) d.plats = [];
+  const path = P.etab(A.etabId);
+  const changer = () => markDirty(path);
+  const redessiner = () => { const y = window.scrollY; render(); window.scrollTo({ top: y }); };
+  const bieres = [...(d.produits || [])].sort((a, b) => (a.nom || '').localeCompare(b.nom || '', 'fr-CA', { sensitivity: 'base' }));
+  const options = [['', 'Choisir une bière…'], ...bieres.map((p) => [p.id, p.nom])];
+
+  const liste = h('div', { class: 'plats-admin' });
+  d.plats.forEach((pl, idx) => {
+    pl.accords = pl.accords || [];
+    const det = h('details', { class: 'form-card plat-admin', open: A.platOuvert === pl.id },
+      h('summary', null, h('strong', null, bi(pl.nom).fr || '(sans nom)'), h('span', { class: 'muted' }, ` · ${bi(pl.section).fr || 'sans section'} · ${pl.accords.length} bière(s)`)),
+      h('div', { class: 'grid2' },
+        biField('Nom du plat', pl, 'nom', { onChange: changer }),
+        biField('Section du menu', pl, 'section', { onChange: changer })),
+      pl.accords.map((a, i) => h('div', { class: 'accord-admin' },
+        h('div', { class: 'accord-tete' },
+          selectEl(options, a.produit, (v) => { a.produit = v; changer(); }, { class: 'input', 'aria-label': 'Bière' }),
+          h('button', {
+            type: 'button', class: 'icon-btn sm', 'aria-label': 'Retirer cette bière', html: C.UI_ICONS.close,
+            onclick: () => { pl.accords.splice(i, 1); changer(); redessiner(); }
+          })),
+        biField('Pourquoi ça va bien', a, 'pourquoi', { onChange: changer }))),
+      h('div', { class: 'etab-foot' },
+        h('button', { type: 'button', class: 'btn-ghost sm', onclick: () => { pl.accords.push({ produit: '', pourquoi: { fr: '', en: '' } }); changer(); redessiner(); } }, '+ Ajouter une bière'),
+        h('span', { class: 'spacer' }),
+        h('button', {
+          type: 'button', class: 'btn-danger sm',
+          onclick: () => { if (confirm(`Supprimer « ${bi(pl.nom).fr} » ?`)) { d.plats.splice(idx, 1); changer(); redessiner(); } }
+        }, 'Supprimer ce plat')));
+    det.addEventListener('toggle', () => { if (det.open) A.platOuvert = pl.id; else if (A.platOuvert === pl.id) A.platOuvert = null; });
+    liste.append(det);
+  });
+
+  const nouveau = h('input', { class: 'input', type: 'text', placeholder: 'Nom du nouveau plat' });
+  const ajouter = () => {
+    const fr = nouveau.value.trim();
+    if (!fr) { nouveau.focus(); return; }
+    const pl = { id: C.uid('plat'), section: { fr: '', en: '' }, nom: { fr, en: '' }, accords: [] };
+    d.plats.push(pl);
+    A.platOuvert = pl.id;
+    changer();
+    redessiner();
+  };
+  nouveau.addEventListener('keydown', (e) => { if (e.key === 'Enter') ajouter(); });
+
+  return h('div', null,
+    h('p', { class: 'hint' }, 'Les plats du menu de cet établissement. Sur la carte, ils apparaissent dans « Par plat » et dans la fiche de chaque bière.'),
+    d.plats.length ? liste : h('div', { class: 'empty' }, h('strong', null, 'Aucun plat pour l’instant.')),
+    h('section', { class: 'form-card' }, h('h3', null, 'Ajouter un plat'),
+      h('div', { class: 'admin-toolbar' }, nouveau, h('button', { type: 'button', class: 'btn-primary', onclick: ajouter }, 'Ajouter'))));
 }
 
 /* ================= Établissements ================= */
@@ -833,6 +872,8 @@ function usageCount(list, id) {
   let n = 0;
   for (const d of Object.values(A.etabs)) for (const p of d.produits || []) {
     if (list === 'styles' && p.style === id) n++;
+    else if (list === 'provenances' && p.provenance === id) n++;
+    else if (list === 'familles' && p.famille === id) n++;
     else if (list === 'categories' && p.categorie === id) n++;
     else if (PRODUCT_LIST_FIELDS[list] && (p[PRODUCT_LIST_FIELDS[list]] || []).includes(id)) n++;
     else if (p.recette && ((list === 'methodes' && p.recette.methode === id) || (list === 'verres' && p.recette.verre === id) || (list === 'glaces' && p.recette.glace === id))) n++;
@@ -844,6 +885,7 @@ function removeUsage(list, id) {
     let touched = false;
     for (const p of d.produits || []) {
       if (list === 'styles' && p.style === id) { p.style = ''; touched = true; }
+      if (list === 'provenances' && p.provenance === id) { p.provenance = ''; touched = true; }
       const f = PRODUCT_LIST_FIELDS[list];
       if (f && (p[f] || []).includes(id)) { p[f] = p[f].filter((x) => x !== id); touched = true; }
       if (p.recette) {
@@ -859,7 +901,7 @@ function removeUsage(list, id) {
 function viewLists() {
   const list = A.listTab;
   const items = A.vocab[list] || (A.vocab[list] = []);
-  const fixed = list === 'categories';
+  const fixed = LISTES_FIXES.has(list);
   const catOpts = [['', 'Toutes'], ...(A.vocab.categories || []).map((c) => [c.id, c.fr])];
   const table = h('div', { class: 'vocab-table' });
   items.forEach((it, idx) => {
@@ -904,8 +946,8 @@ function viewLists() {
     h('section', { class: 'form-card' },
       h('h3', null, (LISTS.find((x) => x[0] === list) || [])[1]),
       h('p', { class: 'hint' }, fixed
-        ? 'Les catégories structurent l’application (icônes, champs vin et cocktail) : on peut les renommer, pas les supprimer.'
-        : 'Ces listes alimentent les pastilles cliquables du site. Le libellé anglais est facultatif (le français est utilisé à défaut).'),
+        ? 'Cette liste structure la carte : on peut renommer ses éléments, pas les supprimer.'
+        : 'Ces listes alimentent les fiches. Le libellé anglais est facultatif (le français est utilisé à défaut).'),
       table,
       fixed ? null : h('div', { class: 'vocab-row add' }, newFr, newEn, newCat, h('button', { type: 'button', class: 'btn-primary', onclick: add }, 'Ajouter')))
   );

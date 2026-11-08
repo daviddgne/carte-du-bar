@@ -7,7 +7,7 @@ export const PATHS = {
   etab: (id) => `data/etablissements/${id}.json`
 };
 
-export const DRAFT_KEY = 'carte-admin-brouillon-v1';
+export const DRAFT_KEY = 'carte-admin-brouillon-v2';
 const LANG_KEY = 'carte-langue';
 
 /* ---------- Stockage navigateur (toujours protégé) ---------- */
@@ -129,13 +129,6 @@ export function parseNum(s) {
   const n = Number(v);
   return isNaN(n) ? null : n;
 }
-export function bucketOf(buckets, v) {
-  if (v == null || v === '' || isNaN(v)) return null;
-  const n = Number(v);
-  const b = buckets.find((b) => n >= b.min && n < b.max);
-  return b ? b.id : null;
-}
-
 export function slugify(s) {
   return String(s || '')
     .normalize('NFD').replace(/[̀-ͯ]/g, '')
@@ -171,9 +164,7 @@ export function categoryIcon(cat, cls = 'cat-icon') {
   return `<svg class="${cls}" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${body}</svg>`;
 }
 export const UI_ICONS = {
-  heart: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.1 0 3.6 1.1 4.4 2.5.8-1.4 2.3-2.5 4.4-2.5 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg>',
-  search: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>',
-  filter: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>',
+  search:'<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>',
   close: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
   back: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>'
 };
