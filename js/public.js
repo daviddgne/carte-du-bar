@@ -1,4 +1,4 @@
-// Carte pour l'équipe : boutons dans les mots du client, liste compacte, fiche.
+// Carte pour l'équipe : liste avec boutons de goût, fiche d'un coup d'œil, mots expliqués.
 import * as C from './core.js';
 import { FORCES, forceDe, UNITES } from './i18n.js';
 
@@ -6,19 +6,26 @@ const { h, t, tn, tx } = C;
 const ETAB_KEY = 'carte-etablissement';
 const app = document.getElementById('app');
 
+// Couleur du haut de la fiche selon le type de bière.
+const COULEURS = { blonde: '#a8741a', blanche: '#efe3bd', rousse: '#a84d17', noire: '#2b1d16', ipa: '#a9690c', cidre: '#55801f' };
+const COULEUR_DEFAUT = '#8f2747';
+const NIVEAU_AMERTUME = { peu: 1, moyenne: 2, tres: 3 };
+const NIVEAU_FORCE = { legere: 1, moyenne: 2, forte: 3 };
+
 const S = {
   config: null, vocab: null, V: null,
   etabId: null, all: [], produits: [], plats: [], pending: {},
   preview: false, draft: null,
-  q: '', sel: emptySel(), mode: 'gout', platOuvert: null
+  q: '', sel: emptySel(), mode: 'gout', platOuvert: null,
+  motsRe: []
 };
 const R = {}; // références DOM
 
 function emptySel() {
-  return { gout: new Set(), famille: new Set(), force: new Set(), habitude: new Set() };
+  return { gout: new Set(), famille: new Set(), force: new Set() };
 }
 
-/* ---------- Boutons ---------- */
+/* ---------- Boutons de recherche ---------- */
 const OPPOSES = { 'pas-amere': 'amere', amere: 'pas-amere' };
 
 function goutsDe(p) {
@@ -27,6 +34,7 @@ function goutsDe(p) {
   if (p.amertume === 'tres') out.push('amere');
   return out;
 }
+const ids = (list) => (S.vocab[list] || []).map((x) => x.id);
 
 const RANGEES = [
   { id: 'gout', mode: 'et', valeurs: goutsDe, ordre: () => ids('gouts'), libelle: (v) => C.label(S.V, 'gouts', v) },
@@ -35,10 +43,8 @@ const RANGEES = [
     id: 'force', mode: 'ou',
     valeurs: (p) => { const f = forceDe(p.alcool); return f ? [f] : []; },
     ordre: () => FORCES.map((f) => f.id), libelle: (v) => t('force.' + v)
-  },
-  { id: 'habitude', mode: 'ou', valeurs: (p) => p.habitudes || [], ordre: () => ids('habitudes'), libelle: (v) => C.label(S.V, 'habitudes', v) }
+  }
 ];
-function ids(list) { return (S.vocab[list] || []).map((x) => x.id); }
 
 function correspond(p, r, sel) {
   if (!sel.size) return true;
@@ -70,6 +76,81 @@ function basculer(r, v) {
   actualiser();
 }
 
+/* ---------- Mots expliqués ---------- */
+function preparerMots() {
+  const en = C.getLang() === 'en';
+  S.motsRe = (S.vocab.mots || []).map((m) => {
+    const motif = en ? m.motif_en : m.motif;
+    if (!motif) return null;
+    try { return { m, re: new RegExp('(^|[^\\p{L}\\p{N}])(' + motif + ')(?![\\p{L}\\p{N}])', 'iu') }; }
+    catch { return null; }
+  }).filter(Boolean);
+}
+
+// Transforme les mots du lexique en boutons (3 au plus par texte, une fois chacun).
+function lier(texte, exclure) {
+  const trouves = [];
+  for (const { m, re } of S.motsRe) {
+    if (m.id === exclure) continue;
+    const r = re.exec(texte);
+    if (!r) continue;
+    const debut = r.index + r[1].length;
+    trouves.push({ debut, fin: debut + r[2].length, m, mot: r[2] });
+  }
+  trouves.sort((a, b) => a.debut - b.debut);
+  const out = [];
+  let pos = 0, n = 0;
+  for (const f of trouves) {
+    if (f.debut < pos || n >= 3) continue;
+    out.push(texte.slice(pos, f.debut));
+    out.push(h('button', { type: 'button', class: 'mot', onclick: (e) => { e.stopPropagation(); ouvrirMot(f.m.id); } }, f.mot));
+    pos = f.fin;
+    n++;
+  }
+  out.push(texte.slice(pos));
+  return out;
+}
+
+function noms(liste) { return liste.slice(0, 4).map((p) => p.nom).join(', '); }
+function exempleMot(id) {
+  const P = S.produits;
+  const extremes = (cle, fmt, modele) => {
+    const l = P.filter((p) => p[cle] != null).sort((a, b) => a[cle] - b[cle]);
+    if (l.length < 2) return null;
+    const a = l[0], b = l[l.length - 1];
+    return t(modele, { a: a.nom, x: fmt(a[cle]), b: b.nom, y: fmt(b[cle]) });
+  };
+  const liste = (f) => { const l = P.filter(f); return l.length ? t('ex.liste', { l: noms(l) }) : null; };
+  switch (id) {
+    case 'amertume': case 'ibu': return extremes('ibu', (n) => C.fmtNum(n), 'ex.ibu');
+    case 'force': return extremes('alcool', (n) => C.fmtAbv(n), 'ex.force');
+    case 'sure': return liste((p) => (p.gouts || []).includes('acidulee'));
+    case 'houblon': return liste((p) => p.amertume === 'tres');
+    case 'malt': return liste((p) => (p.gouts || []).includes('caramel'));
+    case 'torrefie': return liste((p) => (p.gouts || []).includes('cafe-chocolat'));
+    case 'lager': return liste((p) => ['lager', 'lager-legere', 'pilsner'].includes(p.style));
+    case 'trouble': return liste((p) => ['neipa', 'weizen', 'gose', 'blanche'].includes(p.style));
+    default: return null;
+  }
+}
+
+function ouvrirMot(id) {
+  const m = (S.vocab.mots || []).find((x) => x.id === id);
+  if (!m || !R.feuille) return;
+  const ex = exempleMot(id);
+  C.clear(R.feuille);
+  R.feuille.append(
+    h('div', { class: 'feuille-fond', onclick: fermerMot }),
+    h('div', { class: 'feuille', role: 'dialog', 'aria-label': tx(m) },
+      h('div', { class: 'feuille-tete' },
+        h('h3', null, tx(m)),
+        h('button', { type: 'button', class: 'icon-btn', 'aria-label': t('mot.fermer'), html: C.UI_ICONS.close, onclick: fermerMot })),
+      h('p', null, lier(tx(m.definition), id)),
+      ex ? h('div', { class: 'feuille-ex' }, h('div', { class: 'et' }, t('mot.exemple')), ex) : null));
+  R.feuille.hidden = false;
+}
+function fermerMot() { if (R.feuille) { R.feuille.hidden = true; C.clear(R.feuille); } }
+
 /* ---------- Chargement ---------- */
 async function init() {
   C.initLang();
@@ -84,6 +165,7 @@ async function init() {
       [S.config, S.vocab] = await Promise.all([C.loadJSON(C.PATHS.config), C.loadJSON(C.PATHS.vocab)]);
     }
     S.V = C.indexVocab(S.vocab);
+    preparerMots();
     const etabs = S.config.etablissements || [];
     const voulu = params.get('e') || C.load(ETAB_KEY, false);
     S.etabId = (etabs.find((e) => e.id === voulu) || etabs[0] || {}).id || null;
@@ -129,13 +211,14 @@ function dessiner() {
     app.append(h('div', { class: 'banner' }, h('span', null, t('preview.banner')), h('a', { href: sortie.pathname + sortie.search }, t('preview.exit'))));
   }
 
-  const sous = etabs.length > 1
-    ? h('select', { class: 'etab-select inline', 'aria-label': t('etab'), onchange: (e) => changerEtab(e.target.value) },
-      etabs.map((e) => h('option', { value: e.id, selected: e.id === S.etabId }, [e.nom, e.ville].filter(Boolean).join(' · '))))
-    : etab && h('div', { class: 'sub' }, [etab.nom, etab.ville].filter(Boolean).join(' · '));
+  const pub = etabs.length > 1
+    ? h('select', { class: 'etab-select', 'aria-label': t('etab'), onchange: (e) => changerEtab(e.target.value) },
+      etabs.map((e) => h('option', { value: e.id, selected: e.id === S.etabId }, e.nom)))
+    : etab && h('span', { class: 'etab-nom' }, etab.nom);
 
   app.append(h('header', { class: 'topbar' },
-    h('div', { class: 'brand' }, h('h1', null, nomSite), sous),
+    h('h1', null, nomSite),
+    pub,
     h('button', { class: 'btn-lang', type: 'button', 'aria-label': t('lang.switchLabel'), onclick: changerLangue }, t('lang.switch'))
   ));
 
@@ -151,9 +234,13 @@ function dessiner() {
   app.append(R.corps);
   if (S.mode === 'plat') dessinerPlats(); else dessinerGout();
 
-  R.dialog = h('dialog', { class: 'detail' });
-  R.dialog.addEventListener('cancel', (e) => { e.preventDefault(); fermerFiche(); });
-  R.dialog.addEventListener('click', (e) => { if (e.target === R.dialog) fermerFiche(); });
+  R.fiche = h('div', { class: 'detail-inner' });
+  R.feuille = h('div', { class: 'feuille-zone', hidden: true });
+  R.dialog = h('dialog', { class: 'detail' }, R.fiche, R.feuille);
+  R.dialog.addEventListener('cancel', (e) => {
+    e.preventDefault();
+    if (!R.feuille.hidden) fermerMot(); else fermerFiche();
+  });
   app.append(R.dialog);
 }
 
@@ -198,7 +285,7 @@ function actualiser() {
     b.disabled = !actif && filtres(r.id, r.mode === 'et' ? selectionAvec(r, v) : new Set([v])).length === 0;
   }
   const n = filtres();
-  R.compte.textContent = tn('results', n.length);
+  C.clear(R.compte).append(h('b', null, String(n.length)), ' ', tn('results', n.length).replace(/^\d+\s*/, ''));
   R.effacer.hidden = !S.q && !Object.values(S.sel).some((s) => s.size);
   dessinerListe(n);
 }
@@ -229,18 +316,14 @@ function dessinerListe(produits) {
   for (const [cle, ps] of groupes) {
     R.liste.append(h('section', { class: 'groupe' },
       cle ? h('h2', { class: 'groupe-titre' }, C.label(S.V, 'provenances', cle)) : null,
-      ps.map((p) => ligne(p))));
+      ps.map((p) => carte(p))));
   }
 }
 
-function infos(p) {
-  const type = p.style ? C.label(S.V, 'styles', p.style) : C.label(S.V, 'categories', p.categorie);
-  return [type, C.fmtAbv(p.alcool), p.amertume ? t('amertume.' + p.amertume) : ''].filter(Boolean).join(' · ');
-}
-function aromes(p) {
-  return (p.aromes || []).map((a) => C.label(S.V, 'aromes', a)).join(', ');
-}
-function vignette(p) {
+/* ---------- Morceaux communs ---------- */
+function typeDe(p) { return p.style ? C.label(S.V, 'styles', p.style) : C.label(S.V, 'categories', p.categorie); }
+function seg(n) { return h('span', { class: 'seg', 'aria-hidden': 'true' }, [1, 2, 3].map((i) => h('i', { class: i <= n ? 'on' : null }))); }
+function photo(p) {
   const path = p.image || p.imageEtiquette;
   const ph = () => h('div', { class: `ph ph-${p.categorie}`, html: C.categoryIcon(p.categorie) });
   if (!path) return ph();
@@ -248,15 +331,22 @@ function vignette(p) {
   img.addEventListener('error', () => img.replaceWith(ph()), { once: true });
   return img;
 }
-function ligne(p, raison) {
-  const texteAromes = raison ? '' : aromes(p);
-  return h('button', { class: 'ligne', type: 'button', onclick: () => ouvrirFiche(p.id) },
-    h('div', { class: 'ligne-photo' }, vignette(p)),
-    h('div', { class: 'ligne-texte' },
-      h('div', { class: 'ligne-nom' }, h('strong', null, p.nom), p.producteur ? h('span', { class: 'ligne-brasserie' }, ` · ${p.producteur}`) : null),
-      h('div', { class: 'ligne-infos' }, infos(p)),
-      texteAromes ? h('div', { class: 'ligne-aromes' }, texteAromes) : null,
-      raison ? h('div', { class: 'ligne-raison' }, raison) : null));
+function jauges(p) {
+  const na = NIVEAU_AMERTUME[p.amertume] || 0, nf = NIVEAU_FORCE[forceDe(p.alcool)] || 0;
+  return h('div', { class: 'jauges' },
+    h('span', null, t('jauge.amertume')), seg(na), h('span', { class: 'val' }, p.amertume ? t('amertume.' + p.amertume) : '—'),
+    h('span', null, t('jauge.force')), seg(nf), h('span', { class: 'val' }, C.fmtAbv(p.alcool) || '—'));
+}
+
+function carte(p, raison) {
+  return h('button', { class: 'carte', type: 'button', onclick: () => ouvrirFiche(p.id) },
+    h('div', { class: 'carte-photo' }, photo(p)),
+    h('div', { class: 'carte-texte' },
+      h('div', { class: 'carte-nom' }, p.nom),
+      h('div', { class: 'carte-sous' }, [p.producteur, typeDe(p)].filter(Boolean).join(' · ')),
+      jauges(p),
+      raison ? h('div', { class: 'carte-raison' }, raison)
+        : (tx(p.notes) ? h('div', { class: 'carte-note' }, tx(p.notes)) : null)));
 }
 
 /* ---------- Mode « Par plat » ---------- */
@@ -283,7 +373,7 @@ function blocPlat(pl) {
       onclick: () => { S.platOuvert = ouvert ? null : pl.id; const y = window.scrollY; C.clear(R.corps); dessinerPlats(); window.scrollTo({ top: y }); }
     }, h('span', null, tx(pl.nom)), h('span', { class: 'plat-nb' }, String(accords.length))),
     ouvert ? h('div', { class: 'plat-accords' },
-      accords.length ? accords.map((a) => ligne(a.p, a.pourquoi)) : h('div', { class: 'empty' }, t('plats.vide'))) : null);
+      accords.length ? accords.map((a) => carte(a.p, a.pourquoi)) : h('div', { class: 'empty' }, t('plats.vide'))) : null);
 }
 
 /* ---------- Fiche ---------- */
@@ -294,12 +384,12 @@ function ouvrirFiche(id, empiler = true) {
     const depth = ((history.state && history.state.depth) || 0) + 1;
     history.pushState({ detail: id, depth }, '', '#p=' + encodeURIComponent(id));
   }
+  fermerMot();
   dessinerFiche(p);
   if (!R.dialog.open) R.dialog.showModal();
-  const inner = R.dialog.querySelector('.detail-inner');
-  if (inner) inner.scrollTop = 0;
+  R.fiche.scrollTop = 0;
 }
-function cacherFiche() { if (R.dialog && R.dialog.open) R.dialog.close(); }
+function cacherFiche() { fermerMot(); if (R.dialog && R.dialog.open) R.dialog.close(); }
 function fermerFiche() {
   const d = (history.state && history.state.depth) || 0;
   if (d > 0) history.go(-d);
@@ -315,11 +405,7 @@ function syncDepuisHash() {
 }
 window.addEventListener('popstate', syncDepuisHash);
 
-function boite(k, v) { return v ? h('div', { class: 'stat-box' }, h('div', { class: 'k' }, k), h('div', { class: 'v' }, v)) : null; }
-function paragraphes(texte) { return String(texte).split(/\n+/).filter((s) => s.trim()).map((s) => h('p', null, s)); }
-function lignes(texte) { return String(texte || '').split(/\n+/).map((s) => s.trim()).filter(Boolean); }
-
-// Trois lignes au plus, sans répéter une même raison ; les conseils de la brasserie
+// Trois plats au plus, sans répéter une même raison ; les conseils de la brasserie
 // ou du menu passent avant les conseils généraux de style.
 function platsDe(p) {
   const trouves = [];
@@ -332,85 +418,104 @@ function platsDe(p) {
   return trouves.filter((a) => !vues.has(a.pourquoi) && vues.add(a.pourquoi)).slice(0, 3);
 }
 
-function dessinerFiche(p) {
-  C.clear(R.dialog);
-  const images = [
-    p.image && { path: p.image, label: t('detail.photo') },
-    p.imageEtiquette && { path: p.imageEtiquette, label: t('detail.label') }
-  ].filter(Boolean);
-  const principale = h('div', { class: 'main' });
-  const pouces = [];
-  const montrer = (i) => {
-    C.clear(principale);
-    if (!images.length) principale.append(h('div', { class: `ph ph-${p.categorie}`, html: C.categoryIcon(p.categorie) }));
-    else {
-      const img = h('img', { src: C.imgSrc(images[i].path, S.pending), alt: `${p.nom} — ${images[i].label}` });
-      img.addEventListener('error', () => img.replaceWith(h('div', { class: `ph ph-${p.categorie}`, html: C.categoryIcon(p.categorie) })), { once: true });
-      principale.append(img);
-    }
-    pouces.forEach((b, j) => b.setAttribute('aria-pressed', String(i === j)));
+// Bières proches : même type, amertume voisine, goûts en commun, % proche.
+function semblables(p) {
+  const goutsP = p.gouts || [];
+  const sureP = goutsP.includes('acidulee'), noireP = p.famille === 'noire';
+  const score = (x) => {
+    let s = 0;
+    if (x.famille && x.famille === p.famille) s += 4;
+    if ((x.famille === 'noire') !== noireP) s -= 4;
+    if ((x.gouts || []).includes('acidulee') !== sureP) s -= 3;
+    if (x.amertume && p.amertume) s += Math.max(0, 2 - Math.abs(NIVEAU_AMERTUME[x.amertume] - NIVEAU_AMERTUME[p.amertume]));
+    s += 2 * (x.gouts || []).filter((g) => goutsP.includes(g)).length;
+    if (x.alcool != null && p.alcool != null && Math.abs(x.alcool - p.alcool) < 1) s += 1;
+    return s;
   };
-  if (images.length > 1) {
-    images.forEach((im, i) => pouces.push(h('button', { class: 'thumb', type: 'button', 'aria-label': im.label, onclick: () => montrer(i) },
-      h('img', { src: C.imgSrc(im.path, S.pending), alt: '' }))));
+  const ecart = (x) => (x.alcool == null || p.alcool == null ? 99 : Math.abs(x.alcool - p.alcool));
+  return S.produits.filter((x) => x.id !== p.id)
+    .map((x) => [score(x), x])
+    .filter((a) => a[0] > 0)
+    .sort((a, b) => b[0] - a[0] || ecart(a[1]) - ecart(b[1]))
+    .slice(0, 3).map((a) => a[1]);
+}
+
+function tuile(motId, titre, valeur, detail, n) {
+  return h('button', { type: 'button', class: 'tuile', onclick: () => ouvrirMot(motId) },
+    h('span', { class: 'et' }, titre),
+    h('b', null, valeur, detail ? h('small', null, ' ' + detail) : null),
+    seg(n));
+}
+
+function dessinerFiche(p) {
+  C.clear(R.fiche);
+  const couleur = COULEURS[p.famille] || COULEUR_DEFAUT;
+  const st = p.style && S.V.styles.get(p.style);
+  const desc = st ? tx(st.description) : '';
+  const plats = platsDe(p);
+  const semb = semblables(p);
+  const fo = forceDe(p.alcool);
+
+  const bande = h('header', { class: 'fiche-bande' + (p.famille === 'blanche' ? ' clair' : ''), style: { background: couleur } },
+    h('button', { class: 'fiche-x', type: 'button', 'aria-label': t('detail.close'), html: C.UI_ICONS.close, onclick: fermerFiche }),
+    h('h2', null, p.nom),
+    h('div', { class: 'fiche-sous' }, [p.producteur, typeDe(p)].filter(Boolean).join(' · ')),
+    h('div', { class: 'fiche-photo' }, photo(p)));
+
+  const blocs = [
+    h('div', { class: 'tuiles' },
+      tuile('amertume', t('jauge.amertume'), p.amertume ? t('amertume.' + p.amertume) : '—', p.ibu != null ? `${C.fmtNum(p.ibu)} IBU` : '', NIVEAU_AMERTUME[p.amertume] || 0),
+      tuile('force', t('jauge.force'), C.fmtAbv(p.alcool) || '—', fo ? t('force.' + fo) : '', NIVEAU_FORCE[fo] || 0)),
+    p.disponible === false ? h('div', { class: 'indispo' }, t('detail.unavailable')) : null,
+    tx(p.notes) ? h('p', { class: 'fiche-note' }, lier(tx(p.notes))) : null,
+    desc ? h('div', { class: 'fiche-style' }, h('div', { class: 'et' }, t('detail.style')), h('p', null, lier(desc))) : null
+  ];
+
+  if (plats.length) {
+    const raison = h('div', { class: 'raison' });
+    const puces = plats.map((a, i) => h('button', {
+      type: 'button', class: 'puce',
+      onclick: () => choisir(i)
+    }, a.nom));
+    const choisir = (i) => {
+      puces.forEach((b, j) => b.setAttribute('aria-pressed', String(i === j)));
+      raison.textContent = plats[i].pourquoi;
+    };
+    blocs.push(h('div', { class: 'fiche-bloc' }, h('div', { class: 'et' }, t('detail.vaAvec')), h('div', { class: 'puces' }, puces), raison));
+    choisir(0);
   }
 
-  const type = p.style ? C.label(S.V, 'styles', p.style) : C.label(S.V, 'categories', p.categorie);
-  const amertume = p.amertume ? t('amertume.' + p.amertume) : '';
-  const valeurAmertume = [amertume, p.ibu != null ? `${C.fmtNum(p.ibu)} IBU` : ''].filter(Boolean).join(' · ');
-  const provenance = p.provenance ? C.label(S.V, 'provenances', p.provenance) : '';
-  const estVin = p.categorie === 'vin';
-  const plats = platsDe(p);
-  const blocs = [];
-  if (p.aromes && p.aromes.length) blocs.push(h('section', { class: 'section' }, h('h3', null, t('detail.aromes')), h('p', null, aromes(p))));
-  if (tx(p.notes)) blocs.push(h('section', { class: 'section' }, h('h3', null, t('detail.notes')), paragraphes(tx(p.notes))));
-  if (plats.length) {
-    blocs.push(h('section', { class: 'section' }, h('h3', null, t('detail.plats')),
-      h('ul', { class: 'accords' }, plats.map((a) => h('li', null, h('strong', null, a.nom), h('span', null, a.pourquoi))))));
+  if (semb.length) {
+    blocs.push(h('div', { class: 'fiche-bloc' }, h('div', { class: 'et' }, t('detail.semblables')),
+      h('div', { class: 'semb' }, semb.map((x) => h('button', { type: 'button', class: 'semb-b', onclick: () => ouvrirFiche(x.id) },
+        h('div', { class: 'semb-photo' }, photo(x)), h('span', null, x.nom))))));
   }
   if (p.recette) blocs.push(blocRecette(p.recette));
 
-  R.dialog.append(h('div', { class: 'detail-inner' },
-    h('div', { class: 'detail-top' }, h('button', { class: 'icon-btn', type: 'button', 'aria-label': t('detail.close'), html: C.UI_ICONS.close, onclick: fermerFiche })),
-    h('div', { class: 'detail-media' }, principale, pouces.length ? h('div', { class: 'thumbs' }, pouces) : null),
-    h('div', { class: 'detail-body' },
-      h('h2', null, p.nom),
-      (p.producteur || provenance) ? h('div', { class: 'producer' }, [p.producteur, provenance].filter(Boolean).join(' — ')) : null,
-      p.disponible === false ? h('div', { class: 'unavailable' }, t('detail.unavailable')) : null,
-      h('div', { class: 'stats-row' },
-        boite(t('detail.type'), type),
-        boite(t('detail.abv'), C.fmtAbv(p.alcool)),
-        boite(t('detail.bitter'), valeurAmertume),
-        estVin ? boite(t('detail.vintage'), p.millesime) : null,
-        estVin ? boite(t('detail.grapes'), p.cepages) : null),
-      blocs)));
-  montrer(0);
+  R.fiche.append(bande, h('div', { class: 'fiche-corps' }, blocs));
 }
 
+function boite(k, v) { return v ? h('div', { class: 'stat-box' }, h('div', { class: 'k' }, k), h('div', { class: 'v' }, v)) : null; }
+function paragraphes(texte) { return String(texte).split(/\n+/).filter((s) => s.trim()).map((s) => h('p', null, s)); }
+function lignes(texte) { return String(texte || '').split(/\n+/).map((s) => s.trim()).filter(Boolean); }
 function blocRecette(r) {
   const ingr = (r.ingredients || []).filter((i) => tx(i.nom));
   const unite = (u) => { const x = UNITES.find((y) => y.id === u); return x ? tx(x) : (u || ''); };
   const etapes = lignes(tx(r.etapes));
-  return h('section', { class: 'section' },
-    h('h3', null, t('detail.recipe')),
+  return h('section', { class: 'fiche-bloc' },
+    h('div', { class: 'et' }, t('detail.recipe')),
     h('div', { class: 'recipe' },
       h('div', { class: 'recipe-meta' },
         boite(t('detail.method'), r.methode ? C.label(S.V, 'methodes', r.methode) : ''),
         boite(t('detail.glass'), r.verre ? C.label(S.V, 'verres', r.verre) : ''),
         boite(t('detail.ice'), r.glace ? C.label(S.V, 'glaces', r.glace) : '')),
-      ingr.length ? [
-        h('h4', null, t('detail.ingredients')),
-        h('ul', { class: 'ingredients' }, ingr.map((i) => {
-          const qte = [i.quantite ? C.fmtNum(C.parseNum(i.quantite) ?? i.quantite, 2) || i.quantite : '', unite(i.unite)].filter(Boolean).join(' ');
-          const lie = i.produitId && S.all.find((x) => x.id === i.produitId);
-          return h('li', null, h('span', { class: 'qty' }, qte),
-            lie ? h('button', { type: 'button', onclick: () => ouvrirFiche(lie.id) }, tx(i.nom)) : h('span', null, tx(i.nom)));
-        }))
-      ] : null,
+      ingr.length ? [h('h4', null, t('detail.ingredients')), h('ul', { class: 'ingredients' }, ingr.map((i) => {
+        const qte = [i.quantite ? C.fmtNum(C.parseNum(i.quantite) ?? i.quantite, 2) || i.quantite : '', unite(i.unite)].filter(Boolean).join(' ');
+        return h('li', null, h('span', { class: 'qty' }, qte), h('span', null, tx(i.nom)));
+      }))] : null,
       etapes.length ? [h('h4', null, t('detail.steps')), h('ol', { class: 'steps' }, etapes.map((s) => h('li', null, s)))] : null,
       tx(r.garniture) ? [h('h4', null, t('detail.garnish')), h('p', null, tx(r.garniture))] : null,
-      tx(r.notesEquipe) ? [h('h4', null, t('detail.teamNotes')), h('div', { class: 'team-note' }, paragraphes(tx(r.notesEquipe)))] : null
-    ));
+      tx(r.notesEquipe) ? [h('h4', null, t('detail.teamNotes')), h('div', { class: 'team-note' }, paragraphes(tx(r.notesEquipe)))] : null));
 }
 
 /* ---------- Actions ---------- */
@@ -427,6 +532,7 @@ async function changerEtab(id) {
 
 function changerLangue() {
   C.setLang(C.getLang() === 'fr' ? 'en' : 'fr');
+  preparerMots();
   const ouverte = R.dialog && R.dialog.open;
   dessiner();
   if (ouverte) syncDepuisHash();

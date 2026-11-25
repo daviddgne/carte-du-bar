@@ -11,12 +11,13 @@ const root = document.getElementById('admin');
 
 const ETAB_TYPES = [['pub', 'Pub'], ['restaurant', 'Restaurant'], ['bar', 'Bar'], ['microbrasserie', 'Microbrasserie'], ['autre', 'Autre']];
 const LISTS = [
-  ['aromes', 'Arômes'], ['styles', 'Types détaillés (styles)'], ['provenances', 'Provenances'],
-  ['gouts', 'Boutons « Goût »'], ['familles', 'Boutons « Type »'], ['habitudes', 'Boutons « Il boit d’habitude »'],
+  ['styles', 'Types détaillés (styles)'], ['mots', 'Mots expliqués'], ['aromes', 'Arômes'], ['provenances', 'Provenances'],
+  ['gouts', 'Boutons « Goût »'], ['familles', 'Boutons « Type »'],
   ['methodes', 'Méthodes (cocktails)'], ['verres', 'Verres'], ['glaces', 'Glace'], ['categories', 'Catégories']
 ];
 // Ces listes structurent l'application : on peut les renommer, pas les supprimer.
-const LISTES_FIXES = new Set(['categories', 'gouts', 'familles', 'habitudes']);
+const LISTES_FIXES = new Set(['categories', 'gouts', 'familles']);
+const echapper = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const PRODUCT_LIST_FIELDS = { aromes: 'aromes', gouts: 'gouts', habitudes: 'habitudes' };
 // « Pas amère » et « Amère » se déduisent du champ Amertume de la fiche.
 const GOUTS_AUTO = ['pas-amere', 'amere'];
@@ -32,7 +33,7 @@ const A = {
   dirty: new Set(), deleted: new Set(),
   source: 'site', ghError: '',
   etabId: null, tab: 'catalogue', editing: null,
-  search: '', catFilter: '', listTab: 'aromes',
+  search: '', catFilter: '', listTab: 'styles',
   gh: C.load(GH_KEY) || { owner: '', repo: '', branch: 'main', token: '', basePath: '' },
   publishing: false, notices: []
 };
@@ -501,7 +502,6 @@ function viewEditor() {
       field('IBU (facultatif)', num(p, 'ibu', { placeholder: 'Ex. : 45' }))),
     fieldDiv('Amertume', segField(p, 'amertume', AMERTUMES)),
     fieldDiv('Goût', picker('gouts', p, 'gouts', { fixe: true, exclure: GOUTS_AUTO })),
-    fieldDiv('Il boit d’habitude', picker('habitudes', p, 'habitudes', { fixe: true })),
     h('div', { class: 'toggles' },
       toggle('Visible sur le site', p.disponible !== false, (v) => { p.disponible = v; markEdit(); }))
   ));
@@ -904,13 +904,32 @@ function viewLists() {
   const fixed = LISTES_FIXES.has(list);
   const catOpts = [['', 'Toutes'], ...(A.vocab.categories || []).map((c) => [c.id, c.fr])];
   const table = h('div', { class: 'vocab-table' });
+  const vocabSale = () => markDirty(P.vocab);
+  // Styles : le texte « Ce style, c'est… ». Mots : l'explication et les formes soulignées dans les fiches.
+  const extra = (it) => {
+    if (list === 'styles') {
+      return h('div', { class: 'vocab-extra' },
+        biField('« Ce style, c’est… » (1 ou 2 phrases)', it, 'description', { multiline: true, rows: 2, onChange: vocabSale }),
+        h('label', { class: 'field' }, h('span', { class: 'label' }, 'Source (lien)'),
+          h('input', { class: 'input', type: 'url', value: it.source || '', placeholder: 'https://…', oninput: (e) => { it.source = e.target.value.trim(); vocabSale(); } })));
+    }
+    if (list === 'mots') {
+      const formes = (k, l) => h('label', { class: 'field' }, h('span', { class: 'label' }, l),
+        h('input', { class: 'input', type: 'text', value: it[k] || '', spellcheck: false, oninput: (e) => { it[k] = e.target.value.trim(); vocabSale(); } }));
+      return h('div', { class: 'vocab-extra' },
+        biField('Explication', it, 'definition', { multiline: true, rows: 2, onChange: vocabSale }),
+        h('div', { class: 'grid2' }, formes('motif', 'Formes soulignées (FR)'), formes('motif_en', 'Formes soulignées (EN)')),
+        h('span', { class: 'hint' }, 'Séparez les formes par | ; un ? rend la lettre d’avant facultative (amères? = amère ou amères). Vide : le mot n’est pas souligné dans les textes.'));
+    }
+    return null;
+  };
   items.forEach((it, idx) => {
-    const n = usageCount(list, it.id);
+    const n = list === 'mots' ? 0 : usageCount(list, it.id);
     table.append(h('div', { class: 'vocab-row' },
       h('input', { class: 'input', type: 'text', value: it.fr, 'aria-label': 'Libellé français', oninput: (e) => { it.fr = e.target.value; markDirty(P.vocab); } }),
       h('input', { class: 'input', type: 'text', value: it.en || '', placeholder: 'English', 'aria-label': 'Libellé anglais', oninput: (e) => { it.en = e.target.value; markDirty(P.vocab); } }),
       list === 'styles' ? selectEl(catOpts, it.categorie || '', (v) => { if (v) it.categorie = v; else delete it.categorie; markDirty(P.vocab); }, { class: 'input', 'aria-label': 'Catégorie' }) : null,
-      h('span', { class: 'usage' }, n ? `${n} produit(s)` : 'inutilisé'),
+      h('span', { class: 'usage' }, list === 'mots' ? '' : n ? `${n} produit(s)` : 'inutilisé'),
       h('div', { class: 'vocab-btns' },
         idx > 0 ? h('button', { type: 'button', class: 'icon-btn sm', 'aria-label': 'Monter', onclick: () => { items.splice(idx - 1, 0, items.splice(idx, 1)[0]); markDirty(P.vocab); render(); } }, '↑') : null,
         fixed ? null : h('button', {
@@ -922,7 +941,8 @@ function viewLists() {
             markDirty(P.vocab);
             render();
           }
-        }))
+        })),
+      extra(it)
     ));
   });
   const newFr = h('input', { class: 'input', type: 'text', placeholder: 'Nouveau (français)' });
@@ -933,6 +953,12 @@ function viewLists() {
     if (!fr) { newFr.focus(); return; }
     const entry = { id: uniqueVocabId(list, C.slugify(fr)), fr, en: newEn.value.trim() };
     if (newCat && newCat.value) entry.categorie = newCat.value;
+    if (list === 'styles') entry.description = { fr: '', en: '' };
+    if (list === 'mots') {
+      entry.motif = echapper(fr.toLowerCase());
+      entry.motif_en = entry.en ? echapper(entry.en.toLowerCase()) : '';
+      entry.definition = { fr: '', en: '' };
+    }
     items.push(entry);
     markDirty(P.vocab);
     render();
@@ -947,7 +973,9 @@ function viewLists() {
       h('h3', null, (LISTS.find((x) => x[0] === list) || [])[1]),
       h('p', { class: 'hint' }, fixed
         ? 'Cette liste structure la carte : on peut renommer ses éléments, pas les supprimer.'
-        : 'Ces listes alimentent les fiches. Le libellé anglais est facultatif (le français est utilisé à défaut).'),
+        : list === 'mots'
+          ? 'Ces mots sont soulignés dans les fiches : on les touche pour lire l’explication. « Amertume » et « Force » s’ouvrent aussi depuis les deux cases du haut de la fiche.'
+          : 'Ces listes alimentent les fiches. Le libellé anglais est facultatif (le français est utilisé à défaut).'),
       table,
       fixed ? null : h('div', { class: 'vocab-row add' }, newFr, newEn, newCat, h('button', { type: 'button', class: 'btn-primary', onclick: add }, 'Ajouter')))
   );

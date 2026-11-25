@@ -1,158 +1,979 @@
 {
-  "categories": [
-    { "id": "biere", "fr": "Bière", "en": "Beer" },
-    { "id": "cidre", "fr": "Cidre", "en": "Cider" },
-    { "id": "vin", "fr": "Vin", "en": "Wine" },
-    { "id": "spiritueux", "fr": "Spiritueux", "en": "Spirits" },
-    { "id": "cocktail", "fr": "Cocktail", "en": "Cocktail" },
-    { "id": "sans-alcool", "fr": "Sans alcool", "en": "Non-alcoholic" }
-  ],
-  "familles": [
-    { "id": "blonde", "fr": "Blonde", "en": "Blonde" },
-    { "id": "blanche", "fr": "Blanche", "en": "White (wheat)" },
-    { "id": "rousse", "fr": "Rousse", "en": "Red" },
-    { "id": "noire", "fr": "Noire / brune", "en": "Dark" },
-    { "id": "ipa", "fr": "IPA", "en": "IPA" },
-    { "id": "cidre", "fr": "Cidre", "en": "Cider" }
-  ],
-  "gouts": [
-    { "id": "pas-amere", "fr": "Pas amère", "en": "Not bitter" },
-    { "id": "amere", "fr": "Amère", "en": "Bitter" },
-    { "id": "fruitee", "fr": "Fruitée", "en": "Fruity" },
-    { "id": "acidulee", "fr": "Acidulée", "en": "Tart" },
-    { "id": "cafe-chocolat", "fr": "Café-chocolat", "en": "Coffee & chocolate" },
-    { "id": "caramel", "fr": "Caramel", "en": "Caramel" },
-    { "id": "epicee", "fr": "Épicée", "en": "Spicy" }
-  ],
-  "habitudes": [
-    { "id": "bud-molson", "fr": "Bud / Molson", "en": "Bud / Molson" },
-    { "id": "stella-heineken", "fr": "Stella / Heineken", "en": "Stella / Heineken" },
-    { "id": "guinness", "fr": "Guinness", "en": "Guinness" },
-    { "id": "pas-biere", "fr": "N'aime pas la bière", "en": "Doesn't like beer" }
-  ],
-  "provenances": [
-    { "id": "quebec", "fr": "Québec", "en": "Quebec" },
-    { "id": "nouveau-brunswick", "fr": "Nouveau-Brunswick", "en": "New Brunswick" },
-    { "id": "ontario", "fr": "Ontario", "en": "Ontario" },
-    { "id": "canada", "fr": "Canada", "en": "Canada" },
-    { "id": "pays-bas", "fr": "Pays-Bas", "en": "Netherlands" },
-    { "id": "belgique", "fr": "Belgique", "en": "Belgium" },
-    { "id": "danemark", "fr": "Danemark", "en": "Denmark" },
-    { "id": "irlande", "fr": "Irlande", "en": "Ireland" },
-    { "id": "france", "fr": "France", "en": "France" },
-    { "id": "allemagne", "fr": "Allemagne", "en": "Germany" },
-    { "id": "etats-unis", "fr": "États-Unis", "en": "United States" },
-    { "id": "italie", "fr": "Italie", "en": "Italy" },
-    { "id": "japon", "fr": "Japon", "en": "Japan" },
-    { "id": "kombucha", "fr": "Kombucha", "en": "Kombucha" }
-  ],
-  "styles": [
-    { "id": "lager", "fr": "Lager", "en": "Lager", "categorie": "biere" },
-    { "id": "pilsner", "fr": "Pilsner", "en": "Pilsner", "categorie": "biere" },
-    { "id": "blonde", "fr": "Blonde", "en": "Blonde ale", "categorie": "biere" },
-    { "id": "blanche", "fr": "Blanche", "en": "Witbier", "categorie": "biere" },
-    { "id": "weizen", "fr": "Weizen (blé)", "en": "Hefeweizen", "categorie": "biere" },
-    { "id": "kolsch", "fr": "Kölsch", "en": "Kölsch", "categorie": "biere" },
-    { "id": "lager-legere", "fr": "Lager légère", "en": "Light lager", "categorie": "biere" },
-    { "id": "pale-ale", "fr": "Pale ale", "en": "Pale ale", "categorie": "biere" },
-    { "id": "session-ipa", "fr": "Session IPA", "en": "Session IPA", "categorie": "biere" },
-    { "id": "ipa", "fr": "IPA", "en": "IPA", "categorie": "biere" },
-    { "id": "ipa-blanche", "fr": "IPA blanche", "en": "White IPA", "categorie": "biere" },
-    { "id": "neipa", "fr": "NEIPA", "en": "NEIPA", "categorie": "biere" },
-    { "id": "dipa", "fr": "Double IPA", "en": "Double IPA", "categorie": "biere" },
-    { "id": "rousse", "fr": "Rousse / ambrée", "en": "Red / amber ale", "categorie": "biere" },
-    { "id": "irish-red", "fr": "Rousse irlandaise", "en": "Irish red ale", "categorie": "biere" },
-    { "id": "brune", "fr": "Brune", "en": "Brown ale", "categorie": "biere" },
-    { "id": "scotch-ale", "fr": "Scotch ale", "en": "Scotch ale", "categorie": "biere" },
-    { "id": "stout", "fr": "Stout", "en": "Stout", "categorie": "biere" },
-    { "id": "porter", "fr": "Porter", "en": "Porter", "categorie": "biere" },
-    { "id": "saison", "fr": "Saison", "en": "Saison", "categorie": "biere" },
-    { "id": "tripel", "fr": "Triple belge", "en": "Belgian tripel", "categorie": "biere" },
-    { "id": "ale-belge-forte", "fr": "Ale belge forte", "en": "Belgian strong ale", "categorie": "biere" },
-    { "id": "dunkelweizen", "fr": "Bière de blé brune (dunkel)", "en": "Dunkelweizen", "categorie": "biere" },
-    { "id": "sour", "fr": "Sûre (sour)", "en": "Sour", "categorie": "biere" },
-    { "id": "gose", "fr": "Gose", "en": "Gose", "categorie": "biere" },
-    { "id": "lambic", "fr": "Lambic aux fruits", "en": "Fruit lambic", "categorie": "biere" },
-    { "id": "cidre-pomme", "fr": "Cidre de pomme", "en": "Apple cider", "categorie": "cidre" },
-    { "id": "cidre-sec", "fr": "Cidre sec", "en": "Dry cider", "categorie": "cidre" },
-    { "id": "cidre-aromatise", "fr": "Cidre aromatisé", "en": "Flavoured cider", "categorie": "cidre" },
-    { "id": "cidre-de-glace", "fr": "Cidre de glace", "en": "Ice cider", "categorie": "cidre" },
-    { "id": "poire", "fr": "Poiré", "en": "Perry", "categorie": "cidre" },
-    { "id": "vin-rouge", "fr": "Rouge", "en": "Red", "categorie": "vin" },
-    { "id": "vin-blanc", "fr": "Blanc", "en": "White", "categorie": "vin" },
-    { "id": "vin-rose", "fr": "Rosé", "en": "Rosé", "categorie": "vin" },
-    { "id": "vin-orange", "fr": "Orange", "en": "Orange", "categorie": "vin" },
-    { "id": "mousseux", "fr": "Mousseux", "en": "Sparkling", "categorie": "vin" },
-    { "id": "vin-fortifie", "fr": "Fortifié", "en": "Fortified", "categorie": "vin" },
-    { "id": "gin", "fr": "Gin", "en": "Gin", "categorie": "spiritueux" },
-    { "id": "vodka", "fr": "Vodka", "en": "Vodka", "categorie": "spiritueux" },
-    { "id": "rhum", "fr": "Rhum", "en": "Rum", "categorie": "spiritueux" },
-    { "id": "whisky", "fr": "Whisky", "en": "Whisky", "categorie": "spiritueux" },
-    { "id": "bourbon", "fr": "Bourbon", "en": "Bourbon", "categorie": "spiritueux" },
-    { "id": "tequila", "fr": "Tequila", "en": "Tequila", "categorie": "spiritueux" },
-    { "id": "mezcal", "fr": "Mezcal", "en": "Mezcal", "categorie": "spiritueux" },
-    { "id": "cognac", "fr": "Cognac / brandy", "en": "Cognac / brandy", "categorie": "spiritueux" },
-    { "id": "liqueur", "fr": "Liqueur", "en": "Liqueur", "categorie": "spiritueux" },
-    { "id": "amer", "fr": "Amer / apéritif", "en": "Bitter / aperitif", "categorie": "spiritueux" },
-    { "id": "classique", "fr": "Classique", "en": "Classic", "categorie": "cocktail" },
-    { "id": "signature", "fr": "Signature de la maison", "en": "House signature", "categorie": "cocktail" },
-    { "id": "spritz", "fr": "Spritz", "en": "Spritz", "categorie": "cocktail" },
-    { "id": "tiki", "fr": "Tiki", "en": "Tiki", "categorie": "cocktail" },
-    { "id": "mocktail", "fr": "Mocktail (sans alcool)", "en": "Mocktail", "categorie": "cocktail" },
-    { "id": "biere-sans-alcool", "fr": "Bière sans alcool", "en": "Alcohol-free beer", "categorie": "sans-alcool" },
-    { "id": "kombucha", "fr": "Kombucha", "en": "Kombucha", "categorie": "sans-alcool" },
-    { "id": "soda-artisanal", "fr": "Soda artisanal", "en": "Craft soda", "categorie": "sans-alcool" }
-  ],
-  "aromes": [
-    { "id": "agrumes", "fr": "Agrumes", "en": "Citrus" },
-    { "id": "tropical", "fr": "Fruits tropicaux", "en": "Tropical fruit" },
-    { "id": "fruits-rouges", "fr": "Fruits rouges", "en": "Red berries" },
-    { "id": "fruits-noirs", "fr": "Fruits noirs", "en": "Dark fruit" },
-    { "id": "fruits-a-noyau", "fr": "Fruits à noyau", "en": "Stone fruit" },
-    { "id": "pomme-poire", "fr": "Pomme & poire", "en": "Apple & pear" },
-    { "id": "floral", "fr": "Floral", "en": "Floral" },
-    { "id": "herbace", "fr": "Herbacé", "en": "Herbal" },
-    { "id": "resineux", "fr": "Résineux / pin", "en": "Resinous / pine" },
-    { "id": "epice", "fr": "Épicé", "en": "Spicy" },
-    { "id": "houblon", "fr": "Houblonné", "en": "Hoppy" },
-    { "id": "levure", "fr": "Levuré (banane, clou)", "en": "Yeasty (banana, clove)" },
-    { "id": "malte", "fr": "Malté / pain", "en": "Malty / bready" },
-    { "id": "cereales", "fr": "Céréales", "en": "Grainy" },
-    { "id": "ble", "fr": "Blé", "en": "Wheat" },
-    { "id": "miel", "fr": "Miel", "en": "Honey" },
-    { "id": "erable", "fr": "Érable", "en": "Maple" },
-    { "id": "caramel", "fr": "Caramel", "en": "Caramel" },
-    { "id": "vanille", "fr": "Vanille", "en": "Vanilla" },
-    { "id": "noix", "fr": "Noix", "en": "Nutty" },
-    { "id": "chocolat", "fr": "Chocolat", "en": "Chocolate" },
-    { "id": "cafe", "fr": "Café", "en": "Coffee" },
-    { "id": "boise", "fr": "Boisé", "en": "Oaky" },
-    { "id": "fume", "fr": "Fumé", "en": "Smoky" },
-    { "id": "mineral", "fr": "Minéral", "en": "Mineral" }
-  ],
-  "methodes": [
-    { "id": "shaker", "fr": "Au shaker", "en": "Shaken" },
-    { "id": "verre-melange", "fr": "Au verre à mélange (remué)", "en": "Stirred (mixing glass)" },
-    { "id": "direct", "fr": "Directement dans le verre", "en": "Built in the glass" },
-    { "id": "melangeur", "fr": "Au mélangeur", "en": "Blended" }
-  ],
-  "verres": [
-    { "id": "pinte", "fr": "Pinte", "en": "Pint" },
-    { "id": "tulipe", "fr": "Tulipe", "en": "Tulip" },
-    { "id": "verre-a-vin", "fr": "Verre à vin", "en": "Wine glass" },
-    { "id": "flute", "fr": "Flûte", "en": "Flute" },
-    { "id": "coupe", "fr": "Coupe", "en": "Coupe" },
-    { "id": "martini", "fr": "Verre à martini", "en": "Martini glass" },
-    { "id": "old-fashioned", "fr": "Old fashioned (verre bas)", "en": "Rocks glass" },
-    { "id": "highball", "fr": "Highball (verre haut)", "en": "Highball" },
-    { "id": "tasse-cuivre", "fr": "Tasse en cuivre", "en": "Copper mug" },
-    { "id": "ballon", "fr": "Verre ballon", "en": "Snifter" },
-    { "id": "shooter", "fr": "Shooter", "en": "Shot glass" }
-  ],
-  "glaces": [
-    { "id": "cubes", "fr": "Glaçons", "en": "Ice cubes" },
-    { "id": "gros-glacon", "fr": "Gros glaçon", "en": "Large cube" },
-    { "id": "concassee", "fr": "Glace concassée", "en": "Crushed ice" },
-    { "id": "sans-glace", "fr": "Sans glace (servi « up »)", "en": "No ice (served up)" }
-  ]
+    "categories":  [
+                       {
+                           "id":  "biere",
+                           "fr":  "Bière",
+                           "en":  "Beer"
+                       },
+                       {
+                           "id":  "cidre",
+                           "fr":  "Cidre",
+                           "en":  "Cider"
+                       },
+                       {
+                           "id":  "vin",
+                           "fr":  "Vin",
+                           "en":  "Wine"
+                       },
+                       {
+                           "id":  "spiritueux",
+                           "fr":  "Spiritueux",
+                           "en":  "Spirits"
+                       },
+                       {
+                           "id":  "cocktail",
+                           "fr":  "Cocktail",
+                           "en":  "Cocktail"
+                       },
+                       {
+                           "id":  "sans-alcool",
+                           "fr":  "Sans alcool",
+                           "en":  "Non-alcoholic"
+                       }
+                   ],
+    "familles":  [
+                     {
+                         "id":  "blonde",
+                         "fr":  "Blonde",
+                         "en":  "Blonde"
+                     },
+                     {
+                         "id":  "blanche",
+                         "fr":  "Blanche",
+                         "en":  "White (wheat)"
+                     },
+                     {
+                         "id":  "rousse",
+                         "fr":  "Rousse",
+                         "en":  "Red"
+                     },
+                     {
+                         "id":  "noire",
+                         "fr":  "Noire / brune",
+                         "en":  "Dark"
+                     },
+                     {
+                         "id":  "ipa",
+                         "fr":  "IPA",
+                         "en":  "IPA"
+                     },
+                     {
+                         "id":  "cidre",
+                         "fr":  "Cidre",
+                         "en":  "Cider"
+                     }
+                 ],
+    "gouts":  [
+                  {
+                      "id":  "pas-amere",
+                      "fr":  "Pas amère",
+                      "en":  "Not bitter"
+                  },
+                  {
+                      "id":  "amere",
+                      "fr":  "Amère",
+                      "en":  "Bitter"
+                  },
+                  {
+                      "id":  "fruitee",
+                      "fr":  "Fruitée",
+                      "en":  "Fruity"
+                  },
+                  {
+                      "id":  "acidulee",
+                      "fr":  "Sûre",
+                      "en":  "Sour"
+                  },
+                  {
+                      "id":  "cafe-chocolat",
+                      "fr":  "Café-chocolat",
+                      "en":  "Coffee \u0026 chocolate"
+                  },
+                  {
+                      "id":  "caramel",
+                      "fr":  "Caramel",
+                      "en":  "Caramel"
+                  },
+                  {
+                      "id":  "epicee",
+                      "fr":  "Épicée",
+                      "en":  "Spicy"
+                  }
+              ],
+    "habitudes":  [
+                      {
+                          "id":  "bud-molson",
+                          "fr":  "Bud / Molson",
+                          "en":  "Bud / Molson"
+                      },
+                      {
+                          "id":  "stella-heineken",
+                          "fr":  "Stella / Heineken",
+                          "en":  "Stella / Heineken"
+                      },
+                      {
+                          "id":  "guinness",
+                          "fr":  "Guinness",
+                          "en":  "Guinness"
+                      },
+                      {
+                          "id":  "pas-biere",
+                          "fr":  "N\u0027aime pas la bière",
+                          "en":  "Doesn\u0027t like beer"
+                      }
+                  ],
+    "provenances":  [
+                        {
+                            "id":  "quebec",
+                            "fr":  "Québec",
+                            "en":  "Quebec"
+                        },
+                        {
+                            "id":  "nouveau-brunswick",
+                            "fr":  "Nouveau-Brunswick",
+                            "en":  "New Brunswick"
+                        },
+                        {
+                            "id":  "ontario",
+                            "fr":  "Ontario",
+                            "en":  "Ontario"
+                        },
+                        {
+                            "id":  "canada",
+                            "fr":  "Canada",
+                            "en":  "Canada"
+                        },
+                        {
+                            "id":  "pays-bas",
+                            "fr":  "Pays-Bas",
+                            "en":  "Netherlands"
+                        },
+                        {
+                            "id":  "belgique",
+                            "fr":  "Belgique",
+                            "en":  "Belgium"
+                        },
+                        {
+                            "id":  "danemark",
+                            "fr":  "Danemark",
+                            "en":  "Denmark"
+                        },
+                        {
+                            "id":  "irlande",
+                            "fr":  "Irlande",
+                            "en":  "Ireland"
+                        },
+                        {
+                            "id":  "france",
+                            "fr":  "France",
+                            "en":  "France"
+                        },
+                        {
+                            "id":  "allemagne",
+                            "fr":  "Allemagne",
+                            "en":  "Germany"
+                        },
+                        {
+                            "id":  "etats-unis",
+                            "fr":  "États-Unis",
+                            "en":  "United States"
+                        },
+                        {
+                            "id":  "italie",
+                            "fr":  "Italie",
+                            "en":  "Italy"
+                        },
+                        {
+                            "id":  "japon",
+                            "fr":  "Japon",
+                            "en":  "Japan"
+                        },
+                        {
+                            "id":  "kombucha",
+                            "fr":  "Kombucha",
+                            "en":  "Kombucha"
+                        }
+                    ],
+    "styles":  [
+                   {
+                       "id":  "lager",
+                       "fr":  "Lager",
+                       "en":  "Lager",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Une lager blonde claire, nette et très pétillante, avec peu de goût de malt ou de houblon.",
+                                           "en":  "A clear blonde lager, clean and very bubbly, with little malt or hop flavour."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/american-lager"
+                   },
+                   {
+                       "id":  "pilsner",
+                       "fr":  "Pilsner",
+                       "en":  "Pilsner",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Une lager blonde très pâle, bien équilibrée, à la finale courte et nette.",
+                                           "en":  "A very pale blonde lager, well balanced, with a short, clean finish."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/german-style-pilsener"
+                   },
+                   {
+                       "id":  "blonde",
+                       "fr":  "Blonde",
+                       "en":  "Blonde ale",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Une des bières les plus accessibles : dorée, ronde, sans goût de malt ou de houblon qui domine.",
+                                           "en":  "One of the most approachable beers: golden, smooth, with no dominant malt or hop flavour."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/blonde-ale"
+                   },
+                   {
+                       "id":  "blanche",
+                       "fr":  "Blanche",
+                       "en":  "Witbier",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Une bière de blé épicée à la coriandre et à l\u0027écorce d\u0027orange. « Wit », en flamand, veut dire blanche.",
+                                           "en":  "A wheat beer spiced with coriander and orange peel. \"Wit\" means white in Flemish."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/belgian-style-wit"
+                   },
+                   {
+                       "id":  "weizen",
+                       "fr":  "Weizen (blé)",
+                       "en":  "Hefeweizen",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Une bière de blé allemande trouble et très pétillante, aux notes de banane et de clou de girofle venant de la levure.",
+                                           "en":  "A hazy, very bubbly German wheat beer, with banana and clove notes from the yeast."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/german-style-hefeweizen"
+                   },
+                   {
+                       "id":  "kolsch",
+                       "fr":  "Kölsch",
+                       "en":  "Kölsch",
+                       "categorie":  "biere"
+                   },
+                   {
+                       "id":  "lager-legere",
+                       "fr":  "Lager légère",
+                       "en":  "Light lager",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Une lager encore plus légère : peu d\u0027alcool, très peu de goût et d\u0027amertume. Très rafraîchissante.",
+                                           "en":  "An even lighter lager: low alcohol, very little flavour or bitterness. Very refreshing."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/american-lager"
+                   },
+                   {
+                       "id":  "pale-ale",
+                       "fr":  "Pale ale",
+                       "en":  "Pale ale",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Une bière houblonnée aux arômes d\u0027agrumes et de pin, équilibrée par un peu de caramel.",
+                                           "en":  "A hoppy beer with citrus and pine aromas, balanced by a little caramel."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/american-pale-ale"
+                   },
+                   {
+                       "id":  "session-ipa",
+                       "fr":  "Session IPA",
+                       "en":  "Session IPA",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Une IPA moins forte (5 % ou moins) : on garde le goût du houblon, mais elle se boit plus facilement.",
+                                           "en":  "A lighter IPA (5% or less): the hop flavour stays, but it is easier to drink."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/session-beer"
+                   },
+                   {
+                       "id":  "ipa",
+                       "fr":  "IPA",
+                       "en":  "IPA",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Le style qui met le houblon en vedette : arômes d\u0027agrumes, de pin ou de fruits, et une amertume marquée.",
+                                           "en":  "The style that puts hops first: citrus, pine or fruit aromas, and a pronounced bitterness."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/american-india-pale-ale"
+                   },
+                   {
+                       "id":  "ipa-blanche",
+                       "fr":  "IPA blanche",
+                       "en":  "White IPA",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Un mélange de blanche et d\u0027IPA : le blé et les épices d\u0027une blanche, avec le houblon et l\u0027amertume d\u0027une IPA.",
+                                           "en":  "A cross between a wheat beer and an IPA: the wheat and spice of a witbier, with the hops and bitterness of an IPA."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/belgian-style-wit"
+                   },
+                   {
+                       "id":  "neipa",
+                       "fr":  "NEIPA",
+                       "en":  "NEIPA",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Une IPA trouble et juteuse : beaucoup d\u0027arômes de houblon, souvent de fruits tropicaux, mais une amertume plus douce qu\u0027une IPA classique.",
+                                           "en":  "A hazy, juicy IPA: lots of hop aroma, often tropical fruit, but softer bitterness than a classic IPA."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/new-england-ipa"
+                   },
+                   {
+                       "id":  "dipa",
+                       "fr":  "Double IPA",
+                       "en":  "Double IPA",
+                       "categorie":  "biere"
+                   },
+                   {
+                       "id":  "rousse",
+                       "fr":  "Rousse / ambrée",
+                       "en":  "Red / amber ale",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Sa couleur vient de malts caramel : elle est plus maltée, avec des notes de caramel.",
+                                           "en":  "Its colour comes from caramel malts: it is maltier, with caramel notes."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/amber-ale"
+                   },
+                   {
+                       "id":  "irish-red",
+                       "fr":  "Rousse irlandaise",
+                       "en":  "Irish red ale",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Une rousse irlandaise maltée, peu amère et peu forte en alcool.",
+                                           "en":  "A malty Irish red ale, low in bitterness and alcohol."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/irish-style-red"
+                   },
+                   {
+                       "id":  "brune",
+                       "fr":  "Brune",
+                       "en":  "Brown ale",
+                       "categorie":  "biere"
+                   },
+                   {
+                       "id":  "scotch-ale",
+                       "fr":  "Scotch ale",
+                       "en":  "Scotch ale",
+                       "categorie":  "biere"
+                   },
+                   {
+                       "id":  "stout",
+                       "fr":  "Stout",
+                       "en":  "Stout",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Une bière noire au goût torréfié, proche du café, grâce à l\u0027orge grillée. Souvent servie à l\u0027azote, ce qui la rend crémeuse.",
+                                           "en":  "A black beer with a roasted, coffee-like taste from roasted barley. Often served on nitrogen, which makes it creamy."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/irish-style-dry-stout"
+                   },
+                   {
+                       "id":  "porter",
+                       "fr":  "Porter",
+                       "en":  "Porter",
+                       "categorie":  "biere"
+                   },
+                   {
+                       "id":  "saison",
+                       "fr":  "Saison",
+                       "en":  "Saison",
+                       "categorie":  "biere"
+                   },
+                   {
+                       "id":  "tripel",
+                       "fr":  "Triple belge",
+                       "en":  "Belgian tripel",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Une bière belge blonde et forte, complexe et parfois épicée grâce à sa levure, à la finale sèche.",
+                                           "en":  "A strong Belgian golden beer, complex and sometimes spicy from its yeast, with a dry finish."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/belgian-style-tripel"
+                   },
+                   {
+                       "id":  "ale-belge-forte",
+                       "fr":  "Ale belge forte",
+                       "en":  "Belgian strong ale",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Une bière belge forte en alcool, mais facile d\u0027approche : fruitée, avec des notes épicées venant de la levure.",
+                                           "en":  "A strong Belgian beer that is still approachable: fruity, with spicy notes from the yeast."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/belgian-style-golden-strong-ale"
+                   },
+                   {
+                       "id":  "dunkelweizen",
+                       "fr":  "Bière de blé brune (dunkel)",
+                       "en":  "Dunkelweizen",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Une bière de blé foncée, maltée, avec des notes de chocolat et souvent de banane et de clou de girofle venant de la levure.",
+                                           "en":  "A dark wheat beer, malty, with chocolate notes and often banana and clove from the yeast."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/german-style-dunkelweizen"
+                   },
+                   {
+                       "id":  "sour",
+                       "fr":  "Sûre",
+                       "en":  "Sour",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Une bière sûre : l\u0027acidité est voulue, elle se forme pendant la fermentation. Souvent avec des fruits.",
+                                           "en":  "A sour beer: the acidity is intended and forms during fermentation. Often made with fruit."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/american-sour"
+                   },
+                   {
+                       "id":  "gose",
+                       "fr":  "Gose",
+                       "en":  "Gose",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Une bière sûre un peu trouble, avec une pointe de sel, souvent des fruits ou des herbes.",
+                                           "en":  "A slightly hazy sour beer with a touch of salt, often with fruit or herbs."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/contemporary-gose"
+                   },
+                   {
+                       "id":  "lambic",
+                       "fr":  "Lambic aux fruits",
+                       "en":  "Fruit lambic",
+                       "categorie":  "biere",
+                       "description":  {
+                                           "fr":  "Une bière belge sûre faite avec des fruits (cerise pour la kriek, framboise…). Le fruit adoucit l\u0027acidité.",
+                                           "en":  "A Belgian sour beer made with fruit (cherry for kriek, raspberry…). The fruit softens the acidity."
+                                       },
+                       "source":  "https://www.craftbeer.com/styles/belgian-style-fruit-lambic"
+                   },
+                   {
+                       "id":  "cidre-pomme",
+                       "fr":  "Cidre de pomme",
+                       "en":  "Apple cider",
+                       "categorie":  "cidre",
+                       "description":  {
+                                           "fr":  "Du jus de pomme fermenté : pétillant et fruité. Il ne contient pas de céréales.",
+                                           "en":  "Fermented apple juice: sparkling and fruity. It contains no grain."
+                                       },
+                       "source":  ""
+                   },
+                   {
+                       "id":  "cidre-sec",
+                       "fr":  "Cidre sec",
+                       "en":  "Dry cider",
+                       "categorie":  "cidre"
+                   },
+                   {
+                       "id":  "cidre-aromatise",
+                       "fr":  "Cidre aromatisé",
+                       "en":  "Flavoured cider",
+                       "categorie":  "cidre"
+                   },
+                   {
+                       "id":  "cidre-de-glace",
+                       "fr":  "Cidre de glace",
+                       "en":  "Ice cider",
+                       "categorie":  "cidre"
+                   },
+                   {
+                       "id":  "poire",
+                       "fr":  "Poiré",
+                       "en":  "Perry",
+                       "categorie":  "cidre"
+                   },
+                   {
+                       "id":  "vin-rouge",
+                       "fr":  "Rouge",
+                       "en":  "Red",
+                       "categorie":  "vin"
+                   },
+                   {
+                       "id":  "vin-blanc",
+                       "fr":  "Blanc",
+                       "en":  "White",
+                       "categorie":  "vin"
+                   },
+                   {
+                       "id":  "vin-rose",
+                       "fr":  "Rosé",
+                       "en":  "Rosé",
+                       "categorie":  "vin"
+                   },
+                   {
+                       "id":  "vin-orange",
+                       "fr":  "Orange",
+                       "en":  "Orange",
+                       "categorie":  "vin"
+                   },
+                   {
+                       "id":  "mousseux",
+                       "fr":  "Mousseux",
+                       "en":  "Sparkling",
+                       "categorie":  "vin"
+                   },
+                   {
+                       "id":  "vin-fortifie",
+                       "fr":  "Fortifié",
+                       "en":  "Fortified",
+                       "categorie":  "vin"
+                   },
+                   {
+                       "id":  "gin",
+                       "fr":  "Gin",
+                       "en":  "Gin",
+                       "categorie":  "spiritueux"
+                   },
+                   {
+                       "id":  "vodka",
+                       "fr":  "Vodka",
+                       "en":  "Vodka",
+                       "categorie":  "spiritueux"
+                   },
+                   {
+                       "id":  "rhum",
+                       "fr":  "Rhum",
+                       "en":  "Rum",
+                       "categorie":  "spiritueux"
+                   },
+                   {
+                       "id":  "whisky",
+                       "fr":  "Whisky",
+                       "en":  "Whisky",
+                       "categorie":  "spiritueux"
+                   },
+                   {
+                       "id":  "bourbon",
+                       "fr":  "Bourbon",
+                       "en":  "Bourbon",
+                       "categorie":  "spiritueux"
+                   },
+                   {
+                       "id":  "tequila",
+                       "fr":  "Tequila",
+                       "en":  "Tequila",
+                       "categorie":  "spiritueux"
+                   },
+                   {
+                       "id":  "mezcal",
+                       "fr":  "Mezcal",
+                       "en":  "Mezcal",
+                       "categorie":  "spiritueux"
+                   },
+                   {
+                       "id":  "cognac",
+                       "fr":  "Cognac / brandy",
+                       "en":  "Cognac / brandy",
+                       "categorie":  "spiritueux"
+                   },
+                   {
+                       "id":  "liqueur",
+                       "fr":  "Liqueur",
+                       "en":  "Liqueur",
+                       "categorie":  "spiritueux"
+                   },
+                   {
+                       "id":  "amer",
+                       "fr":  "Amer / apéritif",
+                       "en":  "Bitter / aperitif",
+                       "categorie":  "spiritueux"
+                   },
+                   {
+                       "id":  "classique",
+                       "fr":  "Classique",
+                       "en":  "Classic",
+                       "categorie":  "cocktail"
+                   },
+                   {
+                       "id":  "signature",
+                       "fr":  "Signature de la maison",
+                       "en":  "House signature",
+                       "categorie":  "cocktail"
+                   },
+                   {
+                       "id":  "spritz",
+                       "fr":  "Spritz",
+                       "en":  "Spritz",
+                       "categorie":  "cocktail"
+                   },
+                   {
+                       "id":  "tiki",
+                       "fr":  "Tiki",
+                       "en":  "Tiki",
+                       "categorie":  "cocktail"
+                   },
+                   {
+                       "id":  "mocktail",
+                       "fr":  "Mocktail (sans alcool)",
+                       "en":  "Mocktail",
+                       "categorie":  "cocktail"
+                   },
+                   {
+                       "id":  "biere-sans-alcool",
+                       "fr":  "Bière sans alcool",
+                       "en":  "Alcohol-free beer",
+                       "categorie":  "sans-alcool"
+                   },
+                   {
+                       "id":  "kombucha",
+                       "fr":  "Kombucha",
+                       "en":  "Kombucha",
+                       "categorie":  "sans-alcool",
+                       "description":  {
+                                           "fr":  "Un thé fermenté, pétillant et légèrement acidulé. Ce n\u0027est pas une bière.",
+                                           "en":  "A fermented tea, sparkling and slightly tart. It is not a beer."
+                                       },
+                       "source":  ""
+                   },
+                   {
+                       "id":  "soda-artisanal",
+                       "fr":  "Soda artisanal",
+                       "en":  "Craft soda",
+                       "categorie":  "sans-alcool"
+                   }
+               ],
+    "aromes":  [
+                   {
+                       "id":  "agrumes",
+                       "fr":  "Agrumes",
+                       "en":  "Citrus"
+                   },
+                   {
+                       "id":  "tropical",
+                       "fr":  "Fruits tropicaux",
+                       "en":  "Tropical fruit"
+                   },
+                   {
+                       "id":  "fruits-rouges",
+                       "fr":  "Fruits rouges",
+                       "en":  "Red berries"
+                   },
+                   {
+                       "id":  "fruits-noirs",
+                       "fr":  "Fruits noirs",
+                       "en":  "Dark fruit"
+                   },
+                   {
+                       "id":  "fruits-a-noyau",
+                       "fr":  "Fruits à noyau",
+                       "en":  "Stone fruit"
+                   },
+                   {
+                       "id":  "pomme-poire",
+                       "fr":  "Pomme \u0026 poire",
+                       "en":  "Apple \u0026 pear"
+                   },
+                   {
+                       "id":  "floral",
+                       "fr":  "Floral",
+                       "en":  "Floral"
+                   },
+                   {
+                       "id":  "herbace",
+                       "fr":  "Herbacé",
+                       "en":  "Herbal"
+                   },
+                   {
+                       "id":  "resineux",
+                       "fr":  "Résineux / pin",
+                       "en":  "Resinous / pine"
+                   },
+                   {
+                       "id":  "epice",
+                       "fr":  "Épicé",
+                       "en":  "Spicy"
+                   },
+                   {
+                       "id":  "houblon",
+                       "fr":  "Houblonné",
+                       "en":  "Hoppy"
+                   },
+                   {
+                       "id":  "levure",
+                       "fr":  "Levuré (banane, clou)",
+                       "en":  "Yeasty (banana, clove)"
+                   },
+                   {
+                       "id":  "malte",
+                       "fr":  "Malté / pain",
+                       "en":  "Malty / bready"
+                   },
+                   {
+                       "id":  "cereales",
+                       "fr":  "Céréales",
+                       "en":  "Grainy"
+                   },
+                   {
+                       "id":  "ble",
+                       "fr":  "Blé",
+                       "en":  "Wheat"
+                   },
+                   {
+                       "id":  "miel",
+                       "fr":  "Miel",
+                       "en":  "Honey"
+                   },
+                   {
+                       "id":  "erable",
+                       "fr":  "Érable",
+                       "en":  "Maple"
+                   },
+                   {
+                       "id":  "caramel",
+                       "fr":  "Caramel",
+                       "en":  "Caramel"
+                   },
+                   {
+                       "id":  "vanille",
+                       "fr":  "Vanille",
+                       "en":  "Vanilla"
+                   },
+                   {
+                       "id":  "noix",
+                       "fr":  "Noix",
+                       "en":  "Nutty"
+                   },
+                   {
+                       "id":  "chocolat",
+                       "fr":  "Chocolat",
+                       "en":  "Chocolate"
+                   },
+                   {
+                       "id":  "cafe",
+                       "fr":  "Café",
+                       "en":  "Coffee"
+                   },
+                   {
+                       "id":  "boise",
+                       "fr":  "Boisé",
+                       "en":  "Oaky"
+                   },
+                   {
+                       "id":  "fume",
+                       "fr":  "Fumé",
+                       "en":  "Smoky"
+                   },
+                   {
+                       "id":  "mineral",
+                       "fr":  "Minéral",
+                       "en":  "Mineral"
+                   }
+               ],
+    "methodes":  [
+                     {
+                         "id":  "shaker",
+                         "fr":  "Au shaker",
+                         "en":  "Shaken"
+                     },
+                     {
+                         "id":  "verre-melange",
+                         "fr":  "Au verre à mélange (remué)",
+                         "en":  "Stirred (mixing glass)"
+                     },
+                     {
+                         "id":  "direct",
+                         "fr":  "Directement dans le verre",
+                         "en":  "Built in the glass"
+                     },
+                     {
+                         "id":  "melangeur",
+                         "fr":  "Au mélangeur",
+                         "en":  "Blended"
+                     }
+                 ],
+    "verres":  [
+                   {
+                       "id":  "pinte",
+                       "fr":  "Pinte",
+                       "en":  "Pint"
+                   },
+                   {
+                       "id":  "tulipe",
+                       "fr":  "Tulipe",
+                       "en":  "Tulip"
+                   },
+                   {
+                       "id":  "verre-a-vin",
+                       "fr":  "Verre à vin",
+                       "en":  "Wine glass"
+                   },
+                   {
+                       "id":  "flute",
+                       "fr":  "Flûte",
+                       "en":  "Flute"
+                   },
+                   {
+                       "id":  "coupe",
+                       "fr":  "Coupe",
+                       "en":  "Coupe"
+                   },
+                   {
+                       "id":  "martini",
+                       "fr":  "Verre à martini",
+                       "en":  "Martini glass"
+                   },
+                   {
+                       "id":  "old-fashioned",
+                       "fr":  "Old fashioned (verre bas)",
+                       "en":  "Rocks glass"
+                   },
+                   {
+                       "id":  "highball",
+                       "fr":  "Highball (verre haut)",
+                       "en":  "Highball"
+                   },
+                   {
+                       "id":  "tasse-cuivre",
+                       "fr":  "Tasse en cuivre",
+                       "en":  "Copper mug"
+                   },
+                   {
+                       "id":  "ballon",
+                       "fr":  "Verre ballon",
+                       "en":  "Snifter"
+                   },
+                   {
+                       "id":  "shooter",
+                       "fr":  "Shooter",
+                       "en":  "Shot glass"
+                   }
+               ],
+    "glaces":  [
+                   {
+                       "id":  "cubes",
+                       "fr":  "Glaçons",
+                       "en":  "Ice cubes"
+                   },
+                   {
+                       "id":  "gros-glacon",
+                       "fr":  "Gros glaçon",
+                       "en":  "Large cube"
+                   },
+                   {
+                       "id":  "concassee",
+                       "fr":  "Glace concassée",
+                       "en":  "Crushed ice"
+                   },
+                   {
+                       "id":  "sans-glace",
+                       "fr":  "Sans glace (servi « up »)",
+                       "en":  "No ice (served up)"
+                   }
+               ],
+    "mots":  [
+                 {
+                     "id":  "amertume",
+                     "fr":  "Amertume",
+                     "en":  "Bitterness",
+                     "motif":  "amertume|amères?|amers?",
+                     "motif_en":  "bitterness|bitter",
+                     "definition":  {
+                                        "fr":  "Le goût amer vient du houblon. Plus il y en a, plus la bouche reste sèche après la gorgée. On le mesure en IBU.",
+                                        "en":  "Bitterness comes from hops. The more hops, the drier the mouth feels after each sip. It is measured in IBU."
+                                    }
+                 },
+                 {
+                     "id":  "ibu",
+                     "fr":  "IBU",
+                     "en":  "IBU",
+                     "motif":  "IBU",
+                     "motif_en":  "IBU",
+                     "definition":  {
+                                        "fr":  "L\u0027échelle qui mesure l\u0027amertume apportée par le houblon. Plus le chiffre est haut, plus la bière est amère.",
+                                        "en":  "The scale that measures the bitterness hops bring. The higher the number, the more bitter the beer."
+                                    }
+                 },
+                 {
+                     "id":  "force",
+                     "fr":  "Force",
+                     "en":  "Strength",
+                     "motif":  "",
+                     "motif_en":  "",
+                     "definition":  {
+                                        "fr":  "Le pourcentage d\u0027alcool de la bière. Ici, on dit « légère » sous 4,6 % et « forte » à partir de 6,5 %.",
+                                        "en":  "The beer\u0027s alcohol percentage. Here, \"light\" means under 4.6% and \"strong\" means 6.5% or more."
+                                    }
+                 },
+                 {
+                     "id":  "sure",
+                     "fr":  "Sûre",
+                     "en":  "Sour",
+                     "motif":  "sûres?|acidulées?",
+                     "motif_en":  "sour|tart",
+                     "definition":  {
+                                        "fr":  "Une bière volontairement acidulée. L\u0027acidité se forme pendant la fermentation : c\u0027est voulu, ce n\u0027est pas un défaut.",
+                                        "en":  "A deliberately tart beer. The acidity forms during fermentation: it is intended, not a flaw."
+                                    }
+                 },
+                 {
+                     "id":  "houblon",
+                     "fr":  "Houblon",
+                     "en":  "Hops",
+                     "motif":  "houblonnées?|houblonnés?|houblon",
+                     "motif_en":  "hoppy|hops?",
+                     "definition":  {
+                                        "fr":  "Une fleur qui donne l\u0027amertume et des arômes d\u0027agrumes, de pin, de fleurs ou de fruits tropicaux.",
+                                        "en":  "A flower that gives bitterness and citrus, pine, floral or tropical fruit aromas."
+                                    }
+                 },
+                 {
+                     "id":  "malt",
+                     "fr":  "Malt",
+                     "en":  "Malt",
+                     "motif":  "maltées?|maltés?|malt",
+                     "motif_en":  "malty|malts?",
+                     "definition":  {
+                                        "fr":  "De l\u0027orge germée puis séchée ou grillée. Il donne la couleur et les goûts de pain, de caramel ou de café.",
+                                        "en":  "Barley that is sprouted then dried or roasted. It gives colour and bread, caramel or coffee flavours."
+                                    }
+                 },
+                 {
+                     "id":  "torrefie",
+                     "fr":  "Torréfiée",
+                     "en":  "Roasted",
+                     "motif":  "torréfiées?|torréfiés?",
+                     "motif_en":  "roasted|roasty",
+                     "definition":  {
+                                        "fr":  "Un goût de grillé, proche du café ou du chocolat noir, qui vient d\u0027orge ou de malt grillé.",
+                                        "en":  "A roasted taste, close to coffee or dark chocolate, that comes from roasted barley or malt."
+                                    }
+                 },
+                 {
+                     "id":  "azote",
+                     "fr":  "Azote",
+                     "en":  "Nitrogen",
+                     "motif":  "azote",
+                     "motif_en":  "nitrogen|nitro",
+                     "definition":  {
+                                        "fr":  "Certaines bières sont servies à l\u0027azote plutôt qu\u0027au gaz carbonique : la mousse est plus fine et la texture plus crémeuse.",
+                                        "en":  "Some beers are served with nitrogen instead of carbon dioxide: the head is finer and the texture creamier."
+                                    }
+                 },
+                 {
+                     "id":  "lager",
+                     "fr":  "Lager",
+                     "en":  "Lager",
+                     "motif":  "lagers?",
+                     "motif_en":  "lagers?",
+                     "definition":  {
+                                        "fr":  "Une bière fermentée plus froid et plus longtemps qu\u0027une ale. Son goût est en général plus net.",
+                                        "en":  "A beer fermented colder and longer than an ale. It usually tastes cleaner."
+                                    }
+                 },
+                 {
+                     "id":  "trouble",
+                     "fr":  "Trouble",
+                     "en":  "Hazy",
+                     "motif":  "troubles?|voilées?",
+                     "motif_en":  "hazy|cloudy",
+                     "definition":  {
+                                        "fr":  "Des levures en suspension, du blé ou de l\u0027avoine rendent la bière voilée. C\u0027est voulu, ce n\u0027est pas un défaut.",
+                                        "en":  "Yeast in suspension, wheat or oats make the beer cloudy. It is intended, not a flaw."
+                                    }
+                 }
+             ]
 }
